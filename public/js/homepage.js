@@ -60,8 +60,3 @@ function init() {
         position: myLatLng
     });
 }
-
-function saveEmail() {
-    var name = $("#nameInput").val();
-    var email = $("#emailInput").val();
-}

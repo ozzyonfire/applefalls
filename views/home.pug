@@ -2,7 +2,11 @@ doctype html
 include mixins
 html(lang="en")
 	include includes/head
-		title Apple Falls Cider Co.
+	script(type="text/javascript", src="js/instafeed.min.js")
+	script(type="text/javascript", src="js/insta-feed.js")
+	script(type="text/javascript", src="js/homepage.js")
+	title Apple Falls Cider Co.
+	
 	body#page-top
 		+navbar('home')
 
@@ -16,8 +20,12 @@ html(lang="en")
 					.row
 						.col-lg-12
 							img.img-responsive.center-block.logo(src="/img/logo-white.png", alt="Apple Falls Cider Co.")
-		#about
+		section#about
 			.container
+				.row
+					.col-lg-12.text-center
+						h1.section-heading About Us
+						hr.primary
 				.row
 					.col-lg-4.col-md-4.text-center
 						.service-box
@@ -29,7 +37,7 @@ html(lang="en")
 					.col.lg-4.col-md-4.text-center
 						.service-box
 							i.fa.fa-4x.icon-map-signs.wow.bounceIn.text-primary(data-wow-delay="0.1s")
-							h3 Our Cider
+							h3 Our Orchard
 							p.text-muted The Campbell's Orchards have been delivery delicious apples to our community for over 35 years.
 							hr.primary
 							a(href="/our-orchard").btn.btn-primary Read more
@@ -40,3 +48,11 @@ html(lang="en")
 							p.text-muted Apple Falls Cider creates ciders that feature the true flavours of Prince Edward County.
 							hr.primary
 							a(href="/our-story").btn.btn-primary Read more
+		section.no-padding
+			.container-fluid
+				.row.no-gutter
+					#instafeed
+		aside.bg-dark#subscribe
+			+subscribe
+		.map#map-canvas
+		+footer

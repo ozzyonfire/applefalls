@@ -1,0 +1,52 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "c2e02247804b8372740de0b76311f1ad",
+      "css": "beer",
+      "code": 59392,
+      "src": "typicons"
+    },
+    {
+      "uid": "94aa5db477515f1da4ce43b239badb9e",
+      "css": "map-signs",
+      "code": 62071,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "22cfc7af2c4f158b37317c65c92b48c2",
+      "css": "location",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
+      "uid": "0d08dbb1dd648a43bdea81b7e6c9e036",
+      "css": "location-1",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4ecf5fd3870bb82ba003d7f34845448d",
+      "css": "leaf",
+      "code": 59395,
+      "src": "typicons"
+    },
+    {
+      "uid": "c2314ed1d2314b89f9285c53bcbf2548",
+      "css": "child",
+      "code": 61870,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "6e8aea8fff9525dfc5149f0c03669091",
+      "css": "flight",
+      "code": 59396,
+      "src": "entypo"
+    }
+  ]
+}

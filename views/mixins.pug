@@ -25,3 +25,57 @@ mixin navbar(activePage)
 						a(href="/blog") Blog
 					li
 						a(href="/contact") Contact
+
+mixin footer
+	aside.bg-dark
+		.container
+			.row.visible-lg.visible-md.hidden-sm.hidden-xs.text-center
+				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+				+contactIcon('fa-phone', "tel:+1-613-242-8433")
+				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+			.row.hidden-lg.hidden-md.visible-sm.hidden-xs.text-center
+				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+				+contactIcon('fa-phone', "tel:+1-613-242-8433")
+			.row.hidden-lg.hidden-md.visible-sm.hidden-xs.text-center
+				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
+				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
+				+contactIcon('fa-phone', "tel:+1-613-242-8433")
+				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
+				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+
+mixin contactIcon(iconName, link)
+	.col-lg-2.col-md-2.col-sm-4.col-xs-6
+		.service-box
+			a(href=link, target="_blank")
+				i.fa.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
+
+mixin subscribe
+	.container.text-center
+		.call-to-action
+			h2 We'll keep you updated
+			#mc_embed_signup
+				form.form-inline(action="//applefallscider.us13.list-manage.com/subscribe/post?u=817f13bf09ea736c573f731b2&amp;id=81f22e84b4", method="post", id="mc-embedded-subscribe-form", name="mc-embedded-subscribe-form", class="validate", target="_blank")
+					.form-group.margin-right-5
+						label.sr-only(for="mce-FNAME") First Name
+						input.form-control#mce-FNAME(type="text", name="FNAME", placeholder="Isaac")
+					.form-group.margin-right-5
+						label.sr-only(for="mce-LNAME") First Name
+						input.form-control#mce-LNAME(type="text", name="LNAME", placeholder="Newton")
+					.form-group.margin-right-5
+						label.sr-only(for="mce-EMAIL") Email Address
+						input.form-control.email#mce-EMAIL(type="email", name="EMAIL", placeholder="nine.eight@meters/s^2.com", size="25")
+					// Don't fill this one in!
+					div(style="position: absolute; left: -5000px;", aria-hidden="true")
+						input(type="text" name="b_817f13bf09ea736c573f731b2_81f22e84b4", tabindex="-1", value="")
+					input.btn.button.btn-default#mc-embedded-subscribe(type="submit", value="Subscribe", name="subscribe")

@@ -7,15 +7,27 @@ function getInsta() {
         resolution: 'standard_resolution',
         limit: 12,
         after: function() {
-            //$('.square-img').css('object-fit', 'cover');
-            $('.square-div').css('overflow', 'hidden');
+            //resizeInstagramPics();
+            setTimeout(resizeInstagramPics, 200); // risky
         },
-        template: '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 square-div"><a href="{{link}}" target="_blank"><img src="{{image}}" class="img-responsive square-img" alt="" style="object-fit: cover; width: 280px; height: 280px;"></a></div>'
+        template: '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 square-div no-padding"><a href="{{link}}" target="_blank"><img src="{{image}}" class="img-responsive square-img {{orientation}}" alt=""></a></div>'
     });
     feed.run();
 }
 
 $( document ).ready(function() {
   getInsta();
+});
 
+function resizeInstagramPics() {
+    var width = $('img.square').css('width');
+    var height = $('img.square').css('height');
+    console.log(width);
+
+    $('.portrait').css('height', height).css('width', width);
+    $('.landscape').css('height', height).css('width', width);
+}
+
+$(window).resize(function() {
+    resizeInstagramPics();
 });
