@@ -1,0 +1,21 @@
+{
+  "name": "applefalls-site",
+  "version": "1.0.0",
+  "description": "Website for applefalls built on Node JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "applefalls"
+  },
+  "author": "Matt Oskamp",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongoose": "^4.11.8",
+    "pug": "^2.0.0-rc.3",
+    "socket.io": "^2.0.3"
+  }
+}

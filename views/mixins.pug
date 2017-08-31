@@ -1,0 +1,27 @@
+mixin navbar(activePage)
+	nav#mainNav.navbar.navbar-default.navbar-fixed-top
+		.container-fluid
+			.navbar-header
+				button(type="button", data-toggle="collapse", data-target="mainNavCollapse").navbar-toggle.collapsed
+					span.sr-only Toggle Navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand.page-scroll(href="#page-top") Apple Falls Cider Co.
+			.collapse.navbar-collapse#mainNavCollapse
+				ul.nav.navbar-nav.navbar-right
+					li
+						a.page-scroll(href="#featured") Featured
+					li.dropdown
+						a.page-scroll(href="#about") About Us #[span.caret]
+						ul.dropdown-menu
+							li
+								a(href="/our-cider") Our Cider
+							li
+								a(href="/our-orchard") Our Orchard
+							li
+								a(href="/our-story") Our Story
+					li
+						a(href="/blog") Blog
+					li
+						a(href="/contact") Contact

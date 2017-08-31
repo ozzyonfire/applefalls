@@ -1,0 +1,42 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+		title Apple Falls Cider Co.
+	body#page-top
+		+navbar('home')
+
+		header
+			video#af-vid(playsinline, autoplay, muted, loop, poster="/img/vids/applefalls.png")
+				source(src="/img/vids/applefalls.mp4", type="video/mp4")
+			img.branch-nest(src="/img/home/branch-nest.png")
+			img.branch-left(src="/img/home/branch-left.png")
+			.header-content
+				.header-content-inner.container-fluid
+					.row
+						.col-lg-12
+							img.img-responsive.center-block.logo(src="/img/logo-white.png", alt="Apple Falls Cider Co.")
+		#about
+			.container
+				.row
+					.col-lg-4.col-md-4.text-center
+						.service-box
+							i.fa.fa-4x.icon-beer.wow.bounceIn.text-primary(data-wow-delay="0s")
+							h3 Our Cider
+							p.text-muted Unpasteurized and unfiltered. Created using traditional techniques from Campbell's Orchards' apples.
+							hr.primary
+							a(href="/our-cider").btn.btn-primary Read more
+					.col.lg-4.col-md-4.text-center
+						.service-box
+							i.fa.fa-4x.icon-map-signs.wow.bounceIn.text-primary(data-wow-delay="0.1s")
+							h3 Our Cider
+							p.text-muted The Campbell's Orchards have been delivery delicious apples to our community for over 35 years.
+							hr.primary
+							a(href="/our-orchard").btn.btn-primary Read more
+					.col.lg-4.col-md-4.text-center
+						.service-box
+							i.fa.fa-4x.fa-pencil-square-o.wow.bounceIn.text-primary(data-wow-delay="0.2s")
+							h3 Our Story
+							p.text-muted Apple Falls Cider creates ciders that feature the true flavours of Prince Edward County.
+							hr.primary
+							a(href="/our-story").btn.btn-primary Read more
