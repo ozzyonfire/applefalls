@@ -5,14 +5,12 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "applefalls"
   },
-  scripts: {
-    start: "node app.js"
-  }
   "author": "Matt Oskamp",
   "license": "ISC",
   "dependencies": {
