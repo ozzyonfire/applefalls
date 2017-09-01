@@ -60,3 +60,41 @@ function init() {
         position: myLatLng
     });
 }
+
+var oldPosition = {x: -500, y: 80};
+
+$(document).click(function(e) {
+    console.log(e.pageX + ', ' + e.pageY);
+
+    var SineWave = function(path, arc) {
+        this.css = function(p) {
+            var s = Math.sin(p*20)
+            var x = lerp(path.start.x, path.end.x, (1.0-p));
+            var y = s * arc + lerp(path.start.y, path.end.y, (1.0-p));
+            return {top: y + "px", left: x + "px"}
+        } 
+    };
+
+    var distance = Math.sqrt(Math.pow(e.pageX-oldPosition.x, 2), Math.pow(e.pageY-oldPosition.y, 2));
+    var duration = distance * 2;
+    var arc = distance / 20;
+
+    var path = {
+        start: oldPosition, 
+        end: {
+            x: e.pageX-40,
+            y: e.pageY-40
+        }
+    };
+
+    $('#bumblebee').animate({
+        path: new SineWave(path, arc)
+    }, duration, function() {
+        oldPosition.x = e.pageX;
+        oldPosition.y = e.pageY;
+    });
+});
+
+function lerp(a, b, f) {
+    return (a * (1.0 - f)) + (b * f);
+}

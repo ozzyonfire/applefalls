@@ -1,4 +1,4 @@
-mixin navbar(activePage)
+mixin navbar(active)
 	nav#mainNav.navbar.navbar-default.navbar-fixed-top
 		.container-fluid
 			.navbar-header
@@ -10,21 +10,45 @@ mixin navbar(activePage)
 				a.navbar-brand.page-scroll(href="#page-top") Apple Falls Cider Co.
 			.collapse.navbar-collapse#mainNavCollapse
 				ul.nav.navbar-nav.navbar-right
-					li
-						a.page-scroll(href="#featured") Featured
+					if active == "home"
+						+activeNav("Home")
+					else
+						+inactiveNav("Home", "/")
+					if active == "news"
+						+activeName("News")
+					else
+						+inactiveNav("News", "/news")
 					li.dropdown
 						a.page-scroll(href="#about") About Us #[span.caret]
 						ul.dropdown-menu
-							li
-								a(href="/our-cider") Our Cider
-							li
-								a(href="/our-orchard") Our Orchard
-							li
-								a(href="/our-story") Our Story
-					li
-						a(href="/blog") Blog
-					li
-						a(href="/contact") Contact
+							if active == "cider"
+								+activeNav("Our Cider")
+							else
+								+inactiveNav("Our Cider", "/our-cider")
+							if active == "orchard"
+								+activeNav("Our Orchard")
+							else
+								+inactiveNav("Our Orchard", "/our-orchard")
+							if active == "story"
+								+activeNav("Our Story")
+							else
+								+inactiveNav("Our Story", "/our-story")
+					if active == "blog"
+						+activeNav("Blog")
+					else
+						+inactiveNav("Blog", "/blog")
+					if active == "contact"
+						+activeNav("Contact")
+					else
+						+inactiveNav("Contact", "/contact")
+
+mixin activeNav(name)
+	li.active
+		a.page-scroll(href="#page-top")= name
+
+mixin inactiveNav(name, link)
+	li
+		a(href=link)= name
 
 mixin footer
 	aside.bg-dark

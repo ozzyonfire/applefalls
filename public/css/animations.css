@@ -9,6 +9,17 @@
   100% {left: 0;}
 }
 
+@keyframes buzz-left-to-right {
+  0% {
+    left: 0;
+    bottom: 0;
+  }
+  100% {
+    left: calc(80%);
+    bottom: 27%;
+  }
+}
+
 .airplane {
   animation-name: fly;
   animation-duration: 8s;
@@ -16,4 +27,31 @@
   position: absolute;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.bumblebee-move {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  animation-name: buzz-left-to-right;
+  animation-duration: 5s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+.bumblebee-start {
+  position: absolute;
+  left: -5000px;
+}
+
+.bumblebee {
+  position: absolute;
+  width: 80px;
+  height: auto;
+}
+
+.flip-y {
+  transform: rotateY(180deg);
 }
