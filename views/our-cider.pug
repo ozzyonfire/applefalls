@@ -1,0 +1,52 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title Apple Falls Cider Co.
+	
+	body#page-top
+		+navbar("cider")
+		header.our-cider#page-scroll
+			.header-content
+				.header-content-inner
+					h1 Our Cider
+					hr
+					p Apple Falls Cider Company creates ciders that feature the true flavours of Prince Edward County.
+					p Our cider is available for sale at Campbell's Orchards during their regular store hours. We will be offering tastings on Saturday and Sunday from 11:30 am - 4:30 pm.</p>
+
+		section
+			.container
+				.row.text-center
+					h1 Varieties
+					hr
+				.row
+					.col-lg-4.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/premiere.png")
+						p.label.label-danger.badge-text.sans-serif-font Sold Out!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Premiere
+								p Our first cider made of Campbell’s own Empire, Red Delicious, Brandywine Crabapple, Flemish Beauty and Bosc pears that make up the entirety of this cider. Categorized as traditional dry, English style cider with a fresh apple aroma followed by a juicy, ripe apple finish that makes it hard to resist.
+					.col-lg-4.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/cherry-square.png")
+						p.label.label-danger.badge-text.sans-serif-font Sold Out!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Heritage & Cherry
+								p On a dark winter night, Colin Campbell was rummaging around in the cider house. In his clumsiness (he may have been sampling too much cider) he accidentally knocked a bucket of sour cherries into a batch of #[strong Heritage] cider. The result was a delicious cider with a subtle hint of cherry tartness.
+					.col-lg-4.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/heritage-square.png")
+						p.label.label-warning.badge-text.sans-serif-font Low Stock!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Heritage
+								p Our Heritage variety is made with late-season apples like Northern Spys and Golden Russets. This provides a more full-bodied cider that sticks to your tongue. We also blended each of our Heritage varieties with Prince Edward County maple syrup.
+				.row.pad-top-20
+					.col-lg-4.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/act2-square.png")
+						p.label.label-success.badge-text.sans-serif-font New!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Premiere Act II
+								p Our Heritage variety is made with late-season apples like Northern Spys and Golden Russets. This provides a more full-bodied cider that sticks to your tongue. We also blended each of our Heritage varieties with Prince Edward County maple syrup.
+		+footer

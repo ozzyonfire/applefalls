@@ -61,22 +61,61 @@ function init() {
     });
 }
 
-var oldPosition = {x: -500, y: 80};
+$(window).load(function() {
+    roses();
 
-$(document).click(function(e) {
-    console.log(e.pageX + ', ' + e.pageY);
+    // only do this once
+    $('#roseButton1').click(moveBee);
+    $('#roseButton2').click(moveBee);
+    $('#roseButton3').click(moveBee);
+    $('#roseButton4').click(moveBee);
+});
 
+$(window).resize(function() {
+    roses();
+});
+
+function roses() {
+    var rBranchWidth = $('#right-branch').width();
+    var rBranchHeight = $('#right-branch').height();
+    var lBranchWidth = $('#left-branch').width();
+    var lBranchHeight = $('#left-branch').height();
+
+    $('#roseButton1').css('bottom', (rBranchHeight * 0.385) + 'px');
+    $('#roseButton1').css('right', (rBranchWidth * 0.69) + 'px');
+
+    $('#roseButton2').css('top', (lBranchHeight * 0.23) + 'px');
+    $('#roseButton2').css('left', (lBranchWidth * 0.4) + 'px');
+
+    $('#roseButton3').css('bottom', (rBranchHeight * 0.13) + 'px');
+    $('#roseButton3').css('right', (rBranchWidth * 0.56) + 'px');
+
+    $('#roseButton4').css('top', (lBranchHeight * 0.17) + 'px');
+    $('#roseButton4').css('left', (lBranchWidth * 0.88) + 'px');
+}
+
+var oldPosition = {x: -500, y: -10}; // initial position
+
+function moveBee(e) {
+    console.log('function called');
     var SineWave = function(path, arc) {
         this.css = function(p) {
             var s = Math.sin(p*20)
             var x = lerp(path.start.x, path.end.x, (1.0-p));
             var y = s * arc + lerp(path.start.y, path.end.y, (1.0-p));
+            console.log(p);
             return {top: y + "px", left: x + "px"}
         } 
     };
 
+    if ((oldPosition.x - e.pageX) > 0) {
+        $('#bumblebee').addClass('flip-y');
+    } else {
+        $('#bumblebee').removeClass('flip-y');
+    }
+
     var distance = Math.sqrt(Math.pow(e.pageX-oldPosition.x, 2), Math.pow(e.pageY-oldPosition.y, 2));
-    var duration = distance * 2;
+    var duration = distance * 3;
     var arc = distance / 20;
 
     var path = {
@@ -93,7 +132,7 @@ $(document).click(function(e) {
         oldPosition.x = e.pageX;
         oldPosition.y = e.pageY;
     });
-});
+}
 
 function lerp(a, b, f) {
     return (a * (1.0 - f)) + (b * f);

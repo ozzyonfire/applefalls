@@ -7,10 +7,10 @@ function getInsta() {
         resolution: 'standard_resolution',
         limit: 12,
         after: function() {
-            //resizeInstagramPics();
             setTimeout(resizeInstagramPics, 200); // risky
+            addSecondRow();
         },
-        template: '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 square-div no-padding"><a href="{{link}}" target="_blank"><img src="{{image}}" class="img-responsive square-img {{orientation}}" alt=""></a></div>'
+        template: '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 square-div no-padding insta"><a href="{{link}}" target="_blank"><img src="{{image}}" class="img-responsive square-img {{orientation}}" alt=""></a></div>'
     });
     feed.run();
 }
@@ -19,12 +19,21 @@ $( document ).ready(function() {
   getInsta();
 });
 
+function addSecondRow() {
+  $('.insta').each(function(index) {
+    if (index > 5) {
+        this.remove();
+        $('#row2').append(this);
+    }
+  });
+}
+
 function resizeInstagramPics() {
     var width = $('img.square').css('width');
     var height = $('img.square').css('height');
     console.log(width);
 
-    $('.portrait').css('height', height).css('width', width);
+    $('.portrait').css('height', height).css('min-width', '100%');
     $('.landscape').css('height', height).css('width', width);
 }
 

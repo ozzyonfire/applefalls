@@ -14,14 +14,18 @@ html(lang="en")
 		header
 			video#af-vid(playsinline, autoplay, muted, loop, poster="/img/vids/applefalls.png")
 				source(src="/img/vids/applefalls.mp4", type="video/mp4")
-			img.branch-nest(src="/img/home/branch-nest.png")
-			img.branch-left(src="/img/home/branch-left.png")
-			.header-content
+			img#right-branch.branch-nest(src="/img/home/branch-nest.png")
+			img#left-branch.branch-left(src="/img/home/branch-left.png")
+			img#bumblebee.bumblebee.bumblebee-start(src="/img/svg/bumblebee.svg" alt="Bumble Bee")
+			.header-content.infront
 				.header-content-inner.container-fluid
 					.row
 						.col-lg-12
 							img.img-responsive.center-block.logo(src="/img/logo-white.png", alt="Apple Falls Cider Co.")
-			img#bumblebee.bumblebee(src="/img/svg/bumblebee.svg" alt="Bumble Bee")
+			button#roseButton1.roseButton.invisible-button Rose 1
+			button#roseButton2.roseButton.invisible-button Rose 2
+			button#roseButton3.roseButton.invisible-button Rose 3
+			button#roseButton4.roseButton.invisible-button Rose 4
 		section#about
 			.container
 				.row
@@ -54,6 +58,7 @@ html(lang="en")
 			.container-fluid
 				.row.no-gutter
 					#instafeed
+				#row2.row.no-gutter
 		aside.bg-dark#subscribe
 			+subscribe
 		.map#map-canvas

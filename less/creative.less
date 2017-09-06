@@ -339,8 +339,15 @@ header {
 }
 
 .logo {
+    position: relative;
     width: 50%;
     filter: drop-shadow(5px 5px 0px black);
+    z-index: 2;
+}
+
+.infront {
+    position: relative;
+    z-index: 2;
 }
 
 .branch-nest {
@@ -348,6 +355,7 @@ header {
     bottom: 0;
     right: 0;
     height: 100%;
+    z-index: 0;
 }
 
 .branch-left {
@@ -355,6 +363,7 @@ header {
     bottom: 0;
     left: 0;
     height: 100%;
+    z-index: 0;
 }
 
 video#af-vid {
@@ -529,4 +538,53 @@ body {
 
 .square-img {
     object-fit: cover;
+}
+
+.invisible-button {
+    background: transparent;
+    border: none !important;
+    font-size: 0;
+}
+
+.roseButton {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 3;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: @theme-dark
+}
+
+.cider-label:hover .overlay {
+    opacity: 0.95;
+}
+
+.overlay-caption {
+    position: absolute;
+    color: white;
+    padding: 20px 20px 0 20px;
+}
+
+.badge-text {
+    font-size: large;
+    filter: drop-shadow(5px 5px 1px black);
+    .sans-serif-font;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.pad-top-20 {
+    padding-top: 20px;
 }

@@ -50,8 +50,15 @@
   position: absolute;
   width: 80px;
   height: auto;
+  z-index: 1;
 }
 
 .flip-y {
   transform: rotateY(180deg);
+}
+
+.rose {
+  position: absolute;
+  width: 50px;
+  height: auto;
 }
