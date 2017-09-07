@@ -1,0 +1,54 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title AFC - Our Story
+	
+	body#page-top
+		+navbar("story")
+		header.our-story#page-scroll
+			.header-content
+				.header-content-inner
+					h1 Our Story
+					hr
+					p Amelia and Matt have been making hard cider since 2012, after they fell in love with the beverage in London, England.
+		section.bg-primary.text-center
+			.container
+				.row
+					.col-lg-8
+						h2.section-heading Influence
+						hr.light
+				.row
+					.col-lg-8
+						p After successfully completing their post-secondary education, Matt and Amelia visited London, England. While they were exploring the culture in London, they stumbled upon traditional hard apple cider. From then on, they were hooked.
+					.col-lg-4
+						img.img-rounded.img-responsive(src="img/flags/uk.svg")
+		section.text-center
+			.container
+				.row
+					.col-lg-offset-4.col-lg-8
+						h2.section-heading Destiny
+						hr.dark
+				.row
+					.col-lg-4
+						i.fa.fa-10x.fa-flask
+					.col-lg-8
+						p On their return, they started experimenting with different blends of apple varieties from the family farm. Their recipe was perfected over many bottles shared with family and friends. They were destined for cider-making, obsessed with achieving exceptional taste using just one ingredient, apples.
+		section.bg-primary.text-center
+			.container
+				.row
+					.col-lg-8
+						h2.section-heading Execution
+						hr.light
+				.row
+					.col-lg-8
+						p Passionate about cider and driven to succeed, Amelia and Matt started Apple Falls Cider Company. Their cider uses 100% Campbell's Orchards apples, hand picked from the family farm. The exceptional quality of the apples from Campbell's Orchards directly ensures great tasting cider.
+					.col-lg-4
+						img.img-rounded.img-responsive(src="img/story/us-small.jpg")
+		aside
+			.container.text-center
+				.row
+					.col-1g-12
+						p For more information, check out our #[a(href="/blog") blog post] on the subject. 
+		+footer
+

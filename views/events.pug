@@ -1,0 +1,25 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title AFC - News and Events
+	
+	body#page-top
+		+navbar("events")
+		header.our-orchard#page-scroll
+			.header-content
+				.header-content-inner
+					h1 News &amp; Events
+					hr
+					p Find out what's happening at Apple Falls Cider Co. and Campbell's Orchards.
+		section.bg-primary.text-center
+			.container
+				.row
+					.col-lg-6
+						h2.section-heading Homegrown Festival
+						p Homegrown is taking place on Saturday, Oct. 21 at the Crystal Palace fairgrounds. The County will serve as a natural hub of the region’s growing craft brewing scene, hosting more than 25 craft beer, cider, and local food vendors.
+						p Attendees can look forward to sampling products from the “GCA” (Greater County Area) breweries, as well as live music, local food, beer and harvest-themed games and activities for tall and small.
+						a.btn.btn-success(href="https://www.ticketfly.com/purchase/event/1474827", target="_blank") Find out more
+					.col-lg-6
+						img.img-responsive(src="./img/events/homegrown.jpeg")
+		+footer

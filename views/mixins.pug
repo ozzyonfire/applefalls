@@ -7,28 +7,27 @@ mixin navbar(active)
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand.page-scroll(href="#page-top") Apple Falls Cider Co.
+				if active == "home"
+					a.navbar-brand.page-scroll(href="#page-top") Apple Falls Cider Co.
+				else
+					a.navbar-brand(href="/") Apple Falls Cider Co.
 			.collapse.navbar-collapse#mainNavCollapse
 				ul.nav.navbar-nav.navbar-right
 					if active == "home"
 						+activeNav("Home")
 					else
 						+inactiveNav("Home", "/")
-					if active == "news"
-						+activeName("News")
-					else
-						+inactiveNav("News", "/news")
 					li.dropdown
-						a.page-scroll(href="#about") About Us #[span.caret]
+						a.page-scroll(href="#about") Info #[span.caret]
 						ul.dropdown-menu
 							if active == "cider"
 								+activeNav("Our Cider")
 							else
 								+inactiveNav("Our Cider", "/our-cider")
-							if active == "orchard"
-								+activeNav("Our Orchard")
+							if active == "events"
+								+activeNav("Events")
 							else
-								+inactiveNav("Our Orchard", "/our-orchard")
+								+inactiveNav("Events", "/events")
 							if active == "story"
 								+activeNav("Our Story")
 							else
@@ -41,6 +40,15 @@ mixin navbar(active)
 						+activeNav("Contact")
 					else
 						+inactiveNav("Contact", "/contact")
+					li.dropdown 
+						a(href="#") Social #[span.caret]
+						ul.dropdown-menu
+							li
+								a(href="https://www.facebook.com/applefallscider", target="_blank") #[i.fa.fa-facebook.fa-fw] Facebook
+							li
+								a(href="https://twitter.com/AppleFallsCider", target="_blank") #[i.fa.fa-twitter.fa-fw]Twitter
+							li
+								a(href="https://www.instagram.com/applefallscider/", target="_blank") #[i.fa.fa-instagram.fa-fw] Instagram
 
 mixin activeNav(name)
 	li.active

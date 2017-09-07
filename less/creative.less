@@ -42,6 +42,13 @@ a {
             color: darken(white, 10%);
         }
     }
+    &.white {
+        color: white;
+        &:hover, 
+        &:focus {
+            color: darken(white, 10%);
+        }
+    }
 }
 
 h1,
@@ -551,6 +558,9 @@ body {
     height: 20px;
     position: absolute;
     z-index: 3;
+    &:focus {
+        outline: none;
+    }
 }
 
 .overlay {
@@ -587,4 +597,8 @@ body {
 
 .pad-top-20 {
     padding-top: 20px;
+}
+
+.fa-10x {
+    font-size: 10em;
 }

@@ -42,6 +42,13 @@ a.alt:hover,
 a.alt:focus {
   color: #e6e6e6;
 }
+a.white {
+  color: white;
+}
+a.white:hover,
+a.white:focus {
+  color: #e6e6e6;
+}
 h1,
 h2,
 h3,
@@ -562,6 +569,9 @@ body {
   position: absolute;
   z-index: 3;
 }
+.roseButton:focus {
+  outline: none;
+}
 .overlay {
   position: absolute;
   top: 0;
@@ -592,4 +602,7 @@ body {
 }
 .pad-top-20 {
   padding-top: 20px;
+}
+.fa-10x {
+  font-size: 10em;
 }
