@@ -1,0 +1,60 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	script(src="/js/jquery.hotkeys.js")
+	script(src="/js/bootstrap-wysiwyg.min.js")
+	script(src="/js/create.js")
+	title New Blog Post
+
+	body#page-top
+		+navbar("blog")
+
+		section.bg-primary
+			.container
+				h1 New Blog Post
+				form
+					.row.form-group
+						.col-lg-6
+							label(for="authorName") Author
+							input#authorName.form-control(type="text")
+						.col-lg-6
+							label(for="createdDate") Date
+							input#createdDate.form-control(type="date")
+					.row.form-group
+						.col-lg-6
+							label(for="title") Title
+							input#title.form-control(type="text")
+					.row.form-group
+						.col-lg-12
+							.btn-toolbar(data-role="editor-toolbar", data-target="#editor")
+								.btn-group
+									button.btn.btn-default(data-edit="bold", data-original-title="Bold", type="button")
+										i.fa.fa-bold
+									button.btn.btn-default(data-edit="italic", data-original-title="Italic", type="button")
+										i.fa.fa-italic
+									button.btn.btn-default(data-edit="strikethrough", data-original-title="Strikethrough", type="button")
+										i.fa.fa-strikethrough
+									button.btn.btn-default(data-edit="underline", data-original-title="Underline", type="button")
+										i.fa.fa-underline
+								.btn-group
+									button.btn.btn-default(data-edit="insertunorderedlist", data-original-title="Bullet List", type="button")
+										i.fa.fa-list-ul
+									button.btn.btn-default(data-edit="insertorderedlist", data-original-title="Number List", type="button")
+										i.fa.fa-list-ol
+									button.btn.btn-default(data-edit="outdent", data-original-title="Reduce Indent", type="button")
+										i.fa.fa-outdent
+									button.btn.btn-default(data-edit="indent", data-original-title="Indent", type="button")
+										i.fa.fa-indent
+								.btn-group
+									button.btn.btn-default.active(data-edit="justifyleft", data-original-title="Left", type="button")
+										i.fa.fa-align-left
+									button.btn.btn-default(data-edit="justifycenter", data-original-title="Center", type="button")
+										i.fa.fa-align-center
+									button.btn.btn-default(data-edit="justifyright", data-original-title="Right", type="button")
+										i.fa.fa-align-right
+									button.btn.btn-default(data-edit="justifyfull", data-original-title="Full Justify", type="button")
+										i.fa.fa-align-justify
+								.btn-group
+
+							#editor.blog-editor

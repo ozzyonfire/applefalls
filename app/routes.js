@@ -18,4 +18,12 @@ module.exports = function(app) {
 	app.get('/contact', function(req, res) {
 		res.render('contact');
 	});
+
+	app.get('/blog', function(req, res) {
+		res.render('blog');
+	});
+
+	app.get('/create', function(req, res) {
+		res.render('create');
+	});
 }

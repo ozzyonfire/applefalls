@@ -14,6 +14,7 @@
   "author": "Matt Oskamp",
   "license": "ISC",
   "dependencies": {
+    "bootstrap-wysiwyg": "^2.0.1",
     "express": "^4.15.4",
     "mongoose": "^4.11.8",
     "pug": "^2.0.0-rc.3",

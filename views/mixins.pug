@@ -35,11 +35,13 @@ mixin navbar(active)
 					if active == "blog"
 						+activeNav("Blog")
 					else
-						+inactiveNav("Blog", "/blog")
+						+inactiveNav("Blog", "http://applefalls.ca/blog")
 					if active == "contact"
 						+activeNav("Contact")
 					else
 						+inactiveNav("Contact", "/contact")
+					//li
+						a(href="http://store.applefallscider.ca", target="_blank") Store
 					li.dropdown 
 						a(href="#") Social #[span.caret]
 						ul.dropdown-menu
