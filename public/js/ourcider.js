@@ -5,6 +5,10 @@ $(document).ready(function() {
 		delay : 0,
 		placement : {
 			align : 'left'
+		},
+		offset: {
+			y: 70,
+			x: 20
 		}
 	});
 });
