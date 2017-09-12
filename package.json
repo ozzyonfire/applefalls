@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap-wysiwyg": "^2.0.1",
     "express": "^4.15.4",
+    "heroku-ssl-redirect": "0.0.4",
     "mongoose": "^4.11.8",
     "pug": "^2.0.0-rc.3",
     "socket.io": "^2.0.3"
