@@ -615,7 +615,19 @@ body {
 .borderless th {
   border: none !important;
   font-family: 'Mission Gothic', 'Helvetica Neue', sans-serif;
-  font-size: large;
+  font-size: small;
+}
+@media (min-width: 768px) {
+  .borderless td,
+  .borderless th {
+    font-size: x-small;
+  }
+}
+@media (min-width: 1200px) {
+  .borderless td,
+  .borderless th {
+    font-size: large;
+  }
 }
 .dark {
   color: #470200;

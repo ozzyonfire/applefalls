@@ -612,7 +612,13 @@ body {
 .borderless td, .borderless th {
     border: none !important;
     .sans-serif-font;
-    font-size: large;
+    font-size: small;
+    @media (min-width: 768px) {
+        font-size: x-small;
+    }
+    @media (min-width: 1200px) {
+        font-size: large;
+    }
 }
 
 .dark {

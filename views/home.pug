@@ -35,33 +35,33 @@ html(lang="en")
 		aside.bg-primary#info
 			.container
 				.row
-					.col-lg-4
+					.col-lg-4.col-md-4.col-sm-4
 						table.table.table-condensed.borderless
 							thead
 								tr
-									th 
+									th Day
 									th Tasting Room
 									th Bottle Shop
 							tbody
 								tr
-									+hourTableRow('Monday', 'Closed', '9am - 5pm')
+									+hourTableRow('Monday', 'Closed', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Tuesday', 'Closed', '9am - 5pm')
+									+hourTableRow('Tuesday', 'Closed', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Wednesday', 'Closed', '9am - 5pm')
+									+hourTableRow('Wednesday', 'Closed', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Thursday', 'Closed', '9am - 5pm')
+									+hourTableRow('Thursday', 'Closed', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Friday', 'Closed', '9am - 5pm')
+									+hourTableRow('Friday', 'Closed', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Saturday', '11:30am - 4:30pm', '9am - 5pm')
+									+hourTableRow('Saturday', '11:30 am - 4:30 pm', '9 am - 5:30 pm')
 								tr
-									+hourTableRow('Sunday', '11:30am - 4:30pm', '9am - 5pm')
-					.col-lg-4.text-center.lead
+									+hourTableRow('Sunday', '11:30 am - 4:30 pm', '10 am - 5 pm')
+					.col-lg-4.col-md-4.col-sm-4.text-center.lead
 						h2 Hours
 						hr.light
-						p Our bottle shop is located at Campbell's Orchards and is open 7 days a week. Enjoy a tasting on the weekends from 11:30 am to 4:30 pm.
-					.col-lg-4#vidContainer
+						p Our bottle shop is located at Campbell's Orchards in Prince Edward County and is open 7 days a week. Visit us for a drink on our licensed patio or stop by for a tasting on the weekends from 11:30 am to 4:30 pm.
+					.col-lg-4.col-md-4.col-sm-4#vidContainer
 						video#boomerang.boomerang(playsinline, autoplay, muted, loop, preload, poster="/img/parallax/grass.png").img-responsive.img-rounded.square-img
 							source(src="/img/vids/boomerang.mov", type="video/mp4")
 						
@@ -72,21 +72,21 @@ html(lang="en")
 						h1.section-heading About Us
 						hr.primary
 				.row
-					.col-lg-4.col-md-4.text-center
+					.col-lg-4.col-md-4.col-sm-4.text-center
 						.service-box
 							i.fa.fa-4x.icon-beer.wow.bounceIn.text-primary(data-wow-delay="0s")
 							h3 Our Cider
 							p.text-muted Unpasteurized and unfiltered. Created using traditional techniques from Campbell's Orchards' apples.
 							hr.primary
 							a(href="/our-cider").btn.btn-primary Read more
-					.col.lg-4.col-md-4.text-center
+					.col.lg-4.col-md-4.col-sm-4.text-center
 						.service-box
 							i.fa.fa-4x.fa-newspaper-o.wow.bounceIn.text-primary(data-wow-delay="0.1s")
 							h3 Events
 							p.text-muted Find out what's happening at Apple Falls and Campbell's Orchards.
 							hr.primary
 							a(href="/events").btn.btn-primary Read more
-					.col.lg-4.col-md-4.text-center
+					.col.lg-4.col-md-4.col-sm-4.text-center
 						.service-box
 							i.fa.fa-4x.fa-pencil-square-o.wow.bounceIn.text-primary(data-wow-delay="0.2s")
 							h3 Our Story
