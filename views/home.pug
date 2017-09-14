@@ -1,3 +1,8 @@
+mixin hourTableRow(day, tastingTime, shopTime)
+	td=day
+	td=tastingTime
+	td=shopTime
+
 doctype html
 include mixins
 html(lang="en")
@@ -27,6 +32,39 @@ html(lang="en")
 			button#roseButton2.roseButton.invisible-button Rose 2
 			button#roseButton3.roseButton.invisible-button Rose 3
 			button#roseButton4.roseButton.invisible-button Rose 4
+		aside.bg-primary#info
+			.container
+				.row
+					.col-lg-4
+						table.table.table-condensed.borderless
+							thead
+								tr
+									th 
+									th Tasting Room
+									th Bottle Shop
+							tbody
+								tr
+									+hourTableRow('Monday', 'Closed', '9am - 5pm')
+								tr
+									+hourTableRow('Tuesday', 'Closed', '9am - 5pm')
+								tr
+									+hourTableRow('Wednesday', 'Closed', '9am - 5pm')
+								tr
+									+hourTableRow('Thursday', 'Closed', '9am - 5pm')
+								tr
+									+hourTableRow('Friday', 'Closed', '9am - 5pm')
+								tr
+									+hourTableRow('Saturday', '11:30am - 4:30pm', '9am - 5pm')
+								tr
+									+hourTableRow('Sunday', '11:30am - 4:30pm', '9am - 5pm')
+					.col-lg-4.text-center.lead
+						h2 Hours
+						hr.light
+						p Our bottle shop is located at Campbell's Orchards and is open 7 days a week. Enjoy a tasting on the weekends from 11:30 am to 4:30 pm.
+					.col-lg-4#vidContainer
+						video#boomerang.boomerang(playsinline, autoplay, muted, loop, preload, poster="/img/parallax/grass.png").img-responsive.img-rounded.square-img
+							source(src="/img/vids/boomerang.mov", type="video/mp4")
+						
 		section#about
 			.container
 				.row

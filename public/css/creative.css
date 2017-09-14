@@ -611,3 +611,18 @@ body {
   background-color: white;
   padding-top: 20px;
 }
+.borderless td,
+.borderless th {
+  border: none !important;
+  font-family: 'Mission Gothic', 'Helvetica Neue', sans-serif;
+  font-size: large;
+}
+.dark {
+  color: #470200;
+}
+.sans-serf {
+  font-family: 'Mission Gothic', 'Helvetica Neue', sans-serif;
+}
+.boomerang {
+  object-position: 0% 25%;
+}
