@@ -21,17 +21,27 @@ module.exports = function(app) {
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
 		text = text.toLowerCase();
+		text = text.replace(/ |,|./g, '');
 		actions.markRead();
 		actions.setTyping(true);
 
 		if (text == 'testing') {
-			reply({text: 'Thank you for giving me life.'});
-		} else if (text == 'hi ciderbot' || text == 'hi cider bot') {
+			respond('Thank you for giving me life.');
+		} else if (text == 'hiciderbot') {
 			bot.getProfile(payload.sender.id, function(err, profile) {
-				reply({
-					text: 'Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?'
-				});
+				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?')
 			});
+		} else {
+			actions.setTyping(false);
 		}
 	});
+
+	bot.getStartedButton('Hi I am CiderBot. Ask me anything and I\'ll do my best to help you.');
+
+	function respond(message, reply, actions) {
+		actions.setTyping(false);
+		reply({ text: message});
+	}
+
+
 }
