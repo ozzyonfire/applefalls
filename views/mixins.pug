@@ -61,7 +61,7 @@ mixin inactiveNav(name, link)
 		a(href=link)= name
 
 mixin footer
-	aside.bg-dark
+	aside.bg-dark.footer
 		.container
 			.row.visible-lg.visible-md.hidden-sm.hidden-xs.text-center
 				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
@@ -87,6 +87,9 @@ mixin footer
 			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
 				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
 				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+			.row.text-center
+				.col-lg-12
+					p.footer-text Read our #[a(href="/privacy") privacy policy]. 
 
 mixin contactIcon(iconName, link)
 	.col-lg-2.col-md-2.col-sm-4.col-xs-6
