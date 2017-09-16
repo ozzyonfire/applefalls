@@ -20,6 +20,7 @@ module.exports = function(app) {
 
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
+		text = text.toLowerCase();
 
 		if (text == 'testing') {
 			actions.setTyping(true);
