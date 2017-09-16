@@ -21,18 +21,16 @@ module.exports = function(app) {
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
 		text = text.toLowerCase();
+		actions.markRead();
+		actions.setTyping(true);
 
 		if (text == 'testing') {
-			actions.setTyping(true);
-			setTimeout(reply({
-				text: 'Thank you for giving me life.'
-			}), 1000);
-		} else if (text == 'hi ciderbot') {
+			reply({text: 'Thank you for giving me life.'});
+		} else if (text == 'hi ciderbot' || text == 'hi cider bot') {
 			bot.getProfile(payload.sender.id, function(err, profile) {
-				actions.setTyping(true);
-				setTimeout(reply({
-					text: 'Hi ' + profile.first_name + '. I exist to serve you. What can I help you with today?'
-				}), 2000);
+				reply({
+					text: 'Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?'
+				});
 			});
 		}
 	});
