@@ -1,6 +1,8 @@
+require('dotenv').config();
 var sslRedirect = require('heroku-ssl-redirect');
 var express = require('express');
 var routes = require('./app/routes');
+var facebook = require('./app/facebook');
 var socketEvents = require('./app/socketEvents');
 var app = express();
 app.set('view engine', 'pug');
@@ -19,4 +21,5 @@ var server = app.listen(process.env.PORT || 8888, function() {
 var io = require('socket.io')(server);
 
 routes(app);
+facebook(app);
 socketEvents(io);
