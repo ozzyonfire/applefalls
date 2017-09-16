@@ -1,14 +1,19 @@
 var request = require('request');
+var Bot = require('messenger-bot');
 
 module.exports = function(app) {
+
+	var bot = new Bot({
+		token: process.env.PAGE_ACCESS_TOKEN,
+		verify: process.env.VERIFY_TOKEN
+	});
+
 	app.get('/facebook/bot/webhook', function(req, res) {
-		if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
-    	console.log("Validating webhook");
-    	res.status(200).send(req.query['hub.challenge']);
-  	} else {
-    	console.error("Failed validation. Make sure the validation tokens match.");
-    	res.sendStatus(403);          
-  	}
+		return bot._verify(req, res);
+	});
+
+	app.post('/facebook/bot/webhook', function(req, res) {
+		bot._handlMessage(req.body);
+		res.end(JSON.stringify({status: 'ok'}));
 	});
 }
