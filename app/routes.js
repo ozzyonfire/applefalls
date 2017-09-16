@@ -26,4 +26,8 @@ module.exports = function(app) {
 	app.get('/create', function(req, res) {
 		res.render('create');
 	});
+
+	app.get('/privacy', function(req, res) {
+		res.render('privacy');
+	});
 }
