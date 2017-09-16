@@ -24,8 +24,15 @@ module.exports = function(app) {
 
 		if (text == 'testing') {
 			actions.setTyping(true);
-			reply({
+			setTimeout(reply({
 				text: 'Thank you for giving me life.'
+			}), 1000);
+		} else if (text == 'hi ciderbot') {
+			bot.getProfile(payload.sender.id, function(err, profile) {
+				actions.setTyping(true);
+				setTimeout(reply({
+					text: 'Hi ' + profile.first_name + '. I exist to serve you. What can I help you with today?'
+				}), 2000);
 			});
 		}
 	});
