@@ -14,7 +14,7 @@ module.exports = function(app) {
 	});
 
 	app.post('/facebook/webhook', function(req, res) {
-		bot._handlMessage(req.body);
+		bot._handleMessage(req.body);
 		res.end(JSON.stringify({status: 'ok'}));
 	});
 
