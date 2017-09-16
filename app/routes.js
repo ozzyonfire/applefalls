@@ -26,8 +26,4 @@ module.exports = function(app) {
 	app.get('/create', function(req, res) {
 		res.render('create');
 	});
-
-	app.get('/facebook/bot/webhook', function(req, res) {
-		
-	});
 }

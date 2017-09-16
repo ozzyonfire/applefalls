@@ -8,11 +8,12 @@ module.exports = function(app) {
 		verify: process.env.VERIFY_TOKEN
 	});
 
-	app.get('/facebook/bot/webhook', function(req, res) {
+	app.get('/facebook/webhook', function(req, res) {
+		console.log('Verifying webhook');
 		return bot._verify(req, res);
 	});
 
-	app.post('/facebook/bot/webhook', function(req, res) {
+	app.post('/facebook/webhook', function(req, res) {
 		bot._handlMessage(req.body);
 		res.end(JSON.stringify({status: 'ok'}));
 	});
