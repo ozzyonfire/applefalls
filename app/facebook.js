@@ -17,4 +17,15 @@ module.exports = function(app) {
 		bot._handlMessage(req.body);
 		res.end(JSON.stringify({status: 'ok'}));
 	});
+
+	bot.on('message', function(payload, reply, actions) {
+		var text = payload.message.text;
+
+		if (text == 'testing') {
+			actions.setTyping(true);
+			reply({
+				text: 'Thank you for giving me life.'
+			});
+		}
+	});
 }
