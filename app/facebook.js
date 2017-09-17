@@ -36,7 +36,7 @@ module.exports = function(app) {
 		}
 	});
 
-	bot.getStartedButton('Hi I am CiderBot. Ask me anything and I\'ll do my best to help you.');
+	bot.setGetStartedButton('Hi I am CiderBot. Ask me anything and I\'ll do my best to help you.');
 
 	function respond(message, reply, actions) {
 		actions.setTyping(false);
