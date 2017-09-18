@@ -69,6 +69,7 @@ $(window).load(function() {
         playDing();
         moveBee(e, true, function() {
             console.log('you made it!');
+            $('#easterEggModal').modal();
         });
     });
 });
@@ -86,6 +87,11 @@ $(document).ready(function() {
     sendValidateEvent('houseQ');
     sendValidateEvent('tankQ');
     sendValidateEvent('riddleQ');
+
+    $('#nextButton').click(function(e) {
+        $('#easterEggModal').modal('hide');
+        $('#finalModal').modal();
+    });
 });
 
 function sendValidateEvent(inputName) {
@@ -243,7 +249,7 @@ socket.on('q5_incorrect', function() {
 
 socket.on('allQuestionsCorrect', function(code) {
     console.log(code);
-    $('#secretCode').val(code);
+    $('#secretCode').text(code);
     $('#nextButton').removeClass('disabled');
 });
 
@@ -255,4 +261,5 @@ function correct(iconName) {
 function incorrect(iconName) {
     $('#'+iconName).addClass('fa-times');
     $('#'+iconName).removeClass('fa-check');
+    $('#nextButton').addClass('disabled');
 }
