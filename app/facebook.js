@@ -26,10 +26,10 @@ module.exports = function(app) {
 		actions.setTyping(true);
 
 		if (text == 'testing') {
-			respond('Thank you for giving me life.');
+			respond('Thank you for giving me life.', reply, actions);
 		} else if (text == 'hiciderbot') {
 			bot.getProfile(payload.sender.id, function(err, profile) {
-				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?')
+				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?', reply, actions);
 			});
 		} else {
 			actions.setTyping(false);
@@ -42,6 +42,5 @@ module.exports = function(app) {
 		actions.setTyping(false);
 		reply({ text: message});
 	}
-
 
 }
