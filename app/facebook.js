@@ -1,6 +1,8 @@
 var request = require('request');
 var Bot = require('messenger-bot');
 
+var secretCodeMessageId = '';
+
 module.exports = function(app) {
 
 	var bot = new Bot({
@@ -20,12 +22,39 @@ module.exports = function(app) {
 
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
+		var quickReply = payload.quick_reply;
 		text = text.toLowerCase();
 		text = text.replace(/ |,|\.|\!/g, '');
 		actions.markRead();
 		actions.setTyping(true);
 
 		console.log(text);
+
+		if (payload.mid == secretCodeMessageId) {
+			// this is the reply from the secret message
+			// verify code
+			reply({
+				text: 'Amazing!'
+			});
+		}
+
+		if (quickReply) {
+			if (quickReply.payload == 'secret') {
+				reply({
+					text: 'Enter your code now.'
+				}, function(err, info) {
+					if (err) {
+						console.log(err);
+					} else {
+						secretCodeMessageId = info.message_id;
+					}
+				});
+			} else if (quickReply.payload == 'happy') {
+				reply({
+					text: 'Me too :)'
+				});
+			}
+		}
 
 		if (text == 'testing') {
 			var response = 'Thank you for giving me life.';
@@ -44,7 +73,7 @@ module.exports = function(app) {
 					content_type: 'text',
 					payload: 'secretcode'
 				}, {
-					title: 'I\m just happy to see you.',
+					title: 'just happy ',
 					content_type: 'text',
 					payload: 'happy'
 				}]
