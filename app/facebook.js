@@ -33,6 +33,7 @@ module.exports = function(app) {
 				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?', reply, actions);
 			});
 		} else if (text == 'iamhardaf') {
+			actions.setTyping(false);
 			reply({
 				text: 'Are you just happy to see me or do you have a secret code?',
 				quick_replies: [
