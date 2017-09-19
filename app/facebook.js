@@ -23,7 +23,7 @@ module.exports = function(app) {
 	bot.on('message', function(payload, reply, actions) {
 		console.log(payload);
 		var text = payload.message.text;
-		var quickReply = payload.quick_reply;
+		var quickReply = payload.message.quick_reply;
 		text = text.toLowerCase();
 		text = text.replace(/ |,|\.|\!/g, '');
 		actions.markRead();
