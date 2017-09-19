@@ -25,6 +25,8 @@ module.exports = function(app) {
 		actions.markRead();
 		actions.setTyping(true);
 
+		console.log('text');
+
 		if (text == 'testing') {
 			var response = 'Thank you for giving me life.';
 			respond(response, reply, actions);
@@ -36,11 +38,14 @@ module.exports = function(app) {
 			actions.setTyping(false);
 			reply({
 				text: 'Are you just happy to see me or do you have a secret code?',
-				quick_replies: [
-				{
+				quick_replies: [{
 					title: 'I have a code',
 					content_type: 'text',
 					playload: 'secretcode'
+				}, {
+					title: 'I\m just happy to see you.',
+					content_type: 'text',
+					playload: 'happy'
 				}]
 			});
 		} 
