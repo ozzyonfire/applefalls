@@ -42,11 +42,11 @@ module.exports = function(app) {
 				quick_replies: [{
 					title: 'I have a code',
 					content_type: 'text',
-					playload: 'secretcode'
+					payload: 'secretcode'
 				}, {
 					title: 'I\m just happy to see you.',
 					content_type: 'text',
-					playload: 'happy'
+					payload: 'happy'
 				}]
 			}, function(err, response) {
 				console.log(err);
