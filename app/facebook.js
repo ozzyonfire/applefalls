@@ -25,7 +25,7 @@ module.exports = function(app) {
 		actions.markRead();
 		actions.setTyping(true);
 
-		console.log('text');
+		console.log(text);
 
 		if (text == 'testing') {
 			var response = 'Thank you for giving me life.';
