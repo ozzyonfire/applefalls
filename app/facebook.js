@@ -21,18 +21,29 @@ module.exports = function(app) {
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
 		text = text.toLowerCase();
-		text = text.replace(/ |,|\./g, '');
+		text = text.replace(/ |,|\.|\!/g, '');
 		actions.markRead();
 		actions.setTyping(true);
 
 		if (text == 'testing') {
-			actions.setTyping(false);
-			reply({text: 'Thank you for giving me life.'});
+			var response = 'Thank you for giving me life.';
+			respond(response, reply, actions);
 		} else if (text == 'hiciderbot') {
 			bot.getProfile(payload.sender.id, function(err, profile) {
 				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?', reply, actions);
 			});
-		} else {
+		} else if (text == 'iamhardaf') {
+			reply({
+				text: 'Are you just happy to see me or do you have a secret code?',
+				quick_replies: [
+				{
+					title: 'I have a code',
+					content_type: 'text',
+					playload: 'secretcode'
+				}]
+			});
+		} 
+		else {
 			actions.setTyping(false);
 		}
 	});
