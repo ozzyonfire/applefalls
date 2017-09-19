@@ -21,6 +21,7 @@ module.exports = function(app) {
 	});
 
 	bot.on('message', function(payload, reply, actions) {
+		console.log(payload);
 		var text = payload.message.text;
 		var quickReply = payload.quick_reply;
 		text = text.toLowerCase();
@@ -39,6 +40,8 @@ module.exports = function(app) {
 		}
 
 		if (quickReply) {
+			console.log('quick reply');
+			console.log(quickReply.payload);
 			if (quickReply.payload == 'secret') {
 				reply({
 					text: 'Enter your code now.'
