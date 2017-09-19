@@ -42,7 +42,7 @@ module.exports = function(app) {
 		if (quickReply) {
 			console.log('quick reply');
 			console.log(quickReply.payload);
-			if (quickReply.payload == 'secret') {
+			if (quickReply.payload == 'secretcode') {
 				reply({
 					text: 'Enter your code now.'
 				}, function(err, info) {
