@@ -36,7 +36,8 @@ module.exports = function(app) {
 			});
 		} else if (text == 'iamhardaf') {
 			actions.setTyping(false);
-			reply({
+			console.log('trying to send a quick reply');
+			bot.sendMessage(payload.sender.id, {
 				text: 'Are you just happy to see me or do you have a secret code?',
 				quick_replies: [{
 					title: 'I have a code',
@@ -47,6 +48,9 @@ module.exports = function(app) {
 					content_type: 'text',
 					playload: 'happy'
 				}]
+			}, function(err, response) {
+				console.log(err);
+				console.log(response);
 			});
 		} 
 		else {
