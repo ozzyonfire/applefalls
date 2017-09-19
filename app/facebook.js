@@ -21,7 +21,7 @@ module.exports = function(app) {
 	bot.on('message', function(payload, reply, actions) {
 		var text = payload.message.text;
 		text = text.toLowerCase();
-		text = text.replace(/ |,|./g, '');
+		text = text.replace(/ |,|\./g, '');
 		actions.markRead();
 		actions.setTyping(true);
 
