@@ -26,7 +26,8 @@ module.exports = function(app) {
 		actions.setTyping(true);
 
 		if (text == 'testing') {
-			respond('Thank you for giving me life.', reply, actions);
+			actions.setTyping(false);
+			reply({text: 'Thank you for giving me life.'});
 		} else if (text == 'hiciderbot') {
 			bot.getProfile(payload.sender.id, function(err, profile) {
 				respond('Hi ' + profile.first_name + '. My sole reason for existence is to serve you. What can I help you with?', reply, actions);
