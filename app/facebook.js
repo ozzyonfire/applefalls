@@ -38,7 +38,7 @@ module.exports = function(app) {
 				if (err) {
 					console.log(err);
 				} else {
-					if (theCode.used == false) {
+					if (theCode && theCode.used == false) {
 						bot.getProfile(payload.sender.id, function(err, profile) {
 							theCode.used = true;
 							theCode.recipient = profile;
@@ -51,7 +51,7 @@ module.exports = function(app) {
 									'draw to win a grand prize!'
 							});
 						});
-					} else if (theCode.used == true) {
+					} else if (theCode && theCode.used == true) {
 						reply({
 							text: 'I\'m sorry. Someone has already used that code.'
 						});
