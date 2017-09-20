@@ -2,7 +2,7 @@ var request = require('request');
 var Bot = require('messenger-bot');
 var Code = require('./model/code');
 
-var secretCodeMessageId = '';
+var readyForCode = false;
 
 module.exports = function(app) {
 
@@ -30,16 +30,37 @@ module.exports = function(app) {
 		actions.markRead();
 		actions.setTyping(true);
 
-		console.log(text);
-		console.log(secretCodeMessageId);
-
-		if (payload.mid == secretCodeMessageId) {
-			// this is the reply from the secret message
-			// verify code
-
-			reply({
-				text: 'Amazing!'
+		if (readyForCode && text.length == 4) {
+			var code = text.toUpperCase();
+			Code.findOne({code: code}, function(err, theCode) {
+				if (err) {
+					console.log(err);
+				} else {
+					if (theCode.used == false) {
+						bot.getProfile(payload.sender.id, function(err, profile) {
+							theCode.used = true;
+							theCode.recipient = profile;
+							theCode.name = profile.first_name;
+							theCode.save();
+							reply({
+								text: 'Congrats! You are an official super fan of '+
+									'Apple Falls Cider Co. To thank you for your loyalty '+ 
+									'we will give you a free T-shirt and enter you into a '+
+									'draw to win a grand prize!'
+							});
+						});
+					} else if (theCode.used == true) {
+						reply({
+							text: 'I\'m sorry. Someone has already used that code.'
+						});
+					} else {
+						reply({
+							text: 'That doesn\'t look like a real code to me... How did you get here?'
+						});
+					}
+				}
 			});
+			readyForCode = false;
 		}
 
 		if (quickReply) {
@@ -53,14 +74,17 @@ module.exports = function(app) {
 					if (err) {
 						console.log(err);
 					} else {
-						secretCodeMessageId = info.message_id;
+						readyForCode = true;
 					}
 				});
 			} else if (quickReply.payload == 'happy') {
 				reply({
 					text: 'Me too :)'
 				});
+				readyForCode = false;
 			}
+		} else {
+			readyForCode = false;
 		}
 
 		if (text == 'testing') {
