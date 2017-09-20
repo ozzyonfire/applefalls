@@ -30,6 +30,8 @@ module.exports = function(app) {
 		actions.markRead();
 		actions.setTyping(true);
 
+		console.log(readyForCode);
+
 		if (readyForCode && text.length == 4) {
 			var code = text.toUpperCase();
 			Code.findOne({code: code}, function(err, theCode) {
