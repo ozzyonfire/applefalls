@@ -47,7 +47,8 @@ module.exports = function(app) {
 			console.log(quickReply.payload);
 			if (quickReply.payload == 'secretcode') {
 				reply({
-					text: 'Enter your code now.'
+					text: 'Enter your code now.',
+					metadata: 'secretcodeentry'
 				}, function(err, info) {
 					if (err) {
 						console.log(err);
