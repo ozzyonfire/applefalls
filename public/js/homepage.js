@@ -247,10 +247,13 @@ socket.on('q5_incorrect', function() {
     incorrect('riddleQIcon');
 });
 
-socket.on('allQuestionsCorrect', function(code) {
+socket.on('allQuestionsCorrect', function(message, code) {
+    console.log(message);
     console.log(code);
+    $('#secretMessage').text(message);
     $('#secretCode').text(code);
     $('#nextButton').removeClass('disabled');
+    $('#nextButton').prop('disabled', false);
 });
 
 function correct(iconName) {
@@ -262,4 +265,5 @@ function incorrect(iconName) {
     $('#'+iconName).addClass('fa-times');
     $('#'+iconName).removeClass('fa-check');
     $('#nextButton').addClass('disabled');
+    $('#nextButton').prop('disabled', true);
 }

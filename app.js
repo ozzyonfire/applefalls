@@ -5,12 +5,26 @@ var routes = require('./app/routes');
 var facebook = require('./app/facebook');
 var socketEvents = require('./app/socketEvents');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var app = express();
 app.set('view engine', 'pug');
 
 // enable ssl redirect
 app.use(sslRedirect());
+
+// prepare DB
+var uriString = process.env.MONGODB_URI || 
+                process.env.MONGOHQ_URL ||
+                'mongodb://localhost/db';
+
+mongoose.connect(uriString, function (err, res) {
+  if (err) {
+    console.log('Error connecting to: ' + uriString + '. ' + err);
+  } else {
+    console.log('Successfully connected to: ' + uriString);
+  }
+});
 
 // body-parser
 app.use(bodyParser.json())

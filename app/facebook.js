@@ -1,5 +1,6 @@
 var request = require('request');
 var Bot = require('messenger-bot');
+var Code = require('./model/code');
 
 var secretCodeMessageId = '';
 
@@ -30,10 +31,12 @@ module.exports = function(app) {
 		actions.setTyping(true);
 
 		console.log(text);
+		console.log(secretCodeMessageId);
 
 		if (payload.mid == secretCodeMessageId) {
 			// this is the reply from the secret message
 			// verify code
+
 			reply({
 				text: 'Amazing!'
 			});
