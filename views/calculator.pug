@@ -1,0 +1,132 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	script(type="text/javascript", src="js/calculator.js")
+	title Tax Calculator
+
+	body
+		+navbar
+
+		section.bg-dark
+			.container.text-center
+				h1 Tax Calculator
+		section
+			.container
+				.row.form-group
+					button.btn.btn-primary(type="button", data-toggle="modal", data-target="#itemModal")#addItemButton Add Item
+					table.table.table-striped.table-hover#itemTable
+						thead
+							tr
+								th Name
+								th Taxable Sales
+								th Volume Sold (L)
+								th Basic Wine Tax
+								th Volume Tax
+								th Environmental Tax
+								th Total Tax Payable
+						tbody#itemTableBody
+						tfoot
+							tr
+								th Total
+								th#salesTotal
+								th#volumeTotal
+								th#totalBasicTax
+								th#totalVolumeTax
+								th#totalEnvironmentalTax
+								th#taxPayableTotal
+
+	#itemModal.modal.fade(role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss="modal") &times;
+					h4#wineModal New Taxable Item
+				.modal-body
+					.row.form-group
+						.col-lg-6
+							label(for="itemName") Name
+							input#itemName.form-control(type="text")
+						.col-lg-6
+							label(for="itemType") Type
+							select.form-control#itemType
+								option(value="cider") Cider
+								option(value="wine") Wine
+								option(value="beer") Beer
+					.row.form-group
+						.col-lg-6
+							label(for="itemVolume") Bottle Volume (mL)
+							.input-group
+								input#itemVolume.form-control.calcVolume(type="number")
+								.input-group-addon mL
+						.col-lg-6
+							label(for="alcoholPercentage") Alc. by Vol.
+							.input-group
+								input.form-control#alcoholPercentage.taxInput(type="number", step="any")
+								.input-group-addon %
+					.row.form-group
+						.col-lg-6
+							label(for="itemPrice") Final Price
+							.input-group
+								.input-group-addon $
+								input.form-control#itemPrice.calcSales(type="number", step="any")
+						.col-lg-6
+							label(for="bottlesSold") Bottles Sold
+							input.form-control#bottlesSold.calcSales.calcVolume(type="number")
+					.row.form-group
+						.col-lg-6
+							label(for="totalSales") Total Sales
+							.input-group
+								.input-group-addon $
+								input.form-control#totalSales.taxInput(type="number", step="any")
+						.col-lg-6
+							label(for="totalVolume") Total Volume
+							.input-group
+								input.form-control#totalVolume.taxInput(type="number", step="any")
+								.input-group-addon L
+					.panel.panel-default
+						.panel-heading
+							h4.panel-title
+								a(data-toggle="collapse", data-target="#breakdown") Breakdown
+							#breakdown.collapse.panel-collapse
+								.panel-body
+									table.table.table-striped#breakdownTable
+										tbody
+											tr
+												td Total Sales
+												td#totalSalesTable
+											tr
+												td Bottle Deposit
+												td#bottleDeposit
+											tr
+												td HST
+												td#hst
+											tr
+												td Basic Price
+												td#basicPrice
+											tr
+												td Environmental Tax
+												td#environmentalTax
+											tr
+												td Less Environmental Tax
+												td#lessEnvironmentalTax
+											tr
+												td Volume Tax
+												td#volumeTax
+											tr
+												td Including Basic Wine Tax
+												td#includingWineTax
+											tr
+												td Basic Wine Tax
+												td#wineTax
+											tr
+												td Total Payable
+												td#totalTaxPayable
+											tr
+												td Net
+												td#net
+				.modal-footer
+					button#saveItemButton.btn.btn-success(type="button") Add
+					button.btn.btn-default(type="button", data-dismiss="modal") Cancel
+
+

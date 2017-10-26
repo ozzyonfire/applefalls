@@ -30,4 +30,8 @@ module.exports = function(app) {
 	app.get('/privacy', function(req, res) {
 		res.render('privacy');
 	});
+
+	app.get('/calculator', function(req, res) {
+		res.render('calculator');
+	});
 }
