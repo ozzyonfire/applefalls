@@ -13,7 +13,8 @@ html(lang="en")
 				h1 Tax Calculator
 		section
 			.container
-				.row.form-group
+				h2 Taxable Distribution
+				.row
 					button.btn.btn-primary(type="button", data-toggle="modal", data-target="#itemModal")#addItemButton Add Item
 					table.table.table-striped.table-hover#itemTable
 						thead
@@ -21,6 +22,7 @@ html(lang="en")
 								th Name
 								th Taxable Sales
 								th Volume Sold (L)
+								th Containers Sold
 								th Basic Wine Tax
 								th Volume Tax
 								th Environmental Tax
@@ -31,17 +33,175 @@ html(lang="en")
 								th Total
 								th#salesTotal
 								th#volumeTotal
+								th#containersTotal
 								th#totalBasicTax
 								th#totalVolumeTax
 								th#totalEnvironmentalTax
 								th#taxPayableTotal
+				.row
+					.col-lg-3
+					.col-lg-3
+						p Sales ($)
+					.col-lg-3
+						p Volume (L)
+					.col-lg-3
+						p Volume Tax ($)
+				.row
+					.col-lg-3
+						p Ontario Wine Taxable Distribution
+					.col-lg-3
+						p#totalTaxableWineSales
+					.col-lg-3
+						p#totalTaxableWineVolume
+					.col-lg-3
+						p#totalWineVolumeTax
+				.row
+					.col-lg-3
+						p Ontario Cooler Taxable Distribution
+					.col-lg-3
+						p#totalTaxableCoolerSales
+					.col-lg-3
+						p#totalTaxableCoolerVolume
+					.col-lg-3
+						p#totalCoolerVolumeTax
+				h2 Non-Taxable Distribution
+				.row
+					.col-lg-4
+					.col-lg-4.text-center
+						label Ontario Wine
+					.col-lg-4.text-center
+						label Ontario Wine Cooler
+				.row
+					.col-lg-4
+					.col-lg-2
+						label Sales ($)
+					.col-lg-2
+						label Volume (L)
+					.col-lg-2
+						label Sales ($)
+					.col-lg-2
+						label Volume (L)
+				.row.form-group
+					.col-lg-4
+						h4 Direct Delivery to Licensee
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#directDeliveryLicenseeSalesWine.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#directDeliveryLicenseeVolumeWine.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#directDeliveryLicenseeSalesCooler.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#directDeliveryLicenseeVolumeCooler.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+				.row.form-group
+					.col-lg-4
+						h4 Duty Free in Ontario
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#dutyFreeSalesWine.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#dutyFreeVolumeWine.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#dutyFreeSalesCooler.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#dutyFreeVolumeCooler.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+				.row.form-group
+					.col-lg-4
+						h4 Other LCBO Sales
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#lcboSalesWine.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#lcboVolumeWine.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#lcboSalesCooler.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#lcboVolumeCooler.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+				.row.form-group
+					.col-lg-4
+						h4 Sales to Ontario Wineries
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#ontarioWineriesSalesWine.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#ontarioWineriesVolumeWine.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#ontarioWineriesSalesCooler.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#ontarioWineriesVolumeCooler.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+				.row.form-group
+					.col-lg-4
+						h4 Exports
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#exportsSalesWine.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#exportsVolumeWine.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#exportsSalesCooler.form-control.calcNonTax(type="number", value="0")
+					.col-lg-2
+						.input-group
+							input#exportsVolumeCooler.form-control.calcNonTax(type="number", value="0")
+							.input-group-addon L
+				.row.form-group
+					.col-lg-4
+						h4 Total
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#totalSalesWine.form-control.calcNonTax(type="number", readonly, value="0")
+					.col-lg-2
+						.input-group
+							input#totalVolumeWine.form-control.calcNonTax(type="number", readonly, value="0")
+							.input-group-addon L
+					.col-lg-2
+						.input-group
+							.input-group-addon $
+							input#totalSalesCooler.form-control.calcNonTax(type="number", readonly, value="0")
+					.col-lg-2
+						.input-group
+							input#totalVolumeCooler.form-control.calcNonTax(type="number", readonly, value="0")
+							.input-group-addon L
 
 	#itemModal.modal.fade(role="dialog")
 		.modal-dialog
 			.modal-content
 				.modal-header
 					button.close(data-dismiss="modal") &times;
-					h4#wineModal New Taxable Item
+					h4#wineModal Taxable Item
 				.modal-body
 					.row.form-group
 						.col-lg-6
@@ -129,4 +289,116 @@ html(lang="en")
 					button#saveItemButton.btn.btn-success(type="button") Add
 					button.btn.btn-default(type="button", data-dismiss="modal") Cancel
 
-
+	#instructionsModal.modal.fade(role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss="modal") &times;
+					h4 Wine and Wine Cooler Return
+				.modal-body
+					p Enter the value in the corresponding cell.
+					h2 Schedule A - Product Distribution Report
+					table.table.table-striped
+						thead
+							tr
+								th Cell
+								th Value
+						tbody
+							tr 
+								td 1A
+								td#tableTaxDistWineSales
+							tr
+								td 1B
+								td#tableTaxDistCoolerSales
+							tr
+								td 3A
+								td#totalTaxDistWineSales
+							tr
+								td 3B
+								td#totalTaxDistCoolerSales
+							tr
+								td 4A
+								td#licenseeWineSales
+							tr
+								td 4B
+								td#licenseeCoolerSales
+							tr
+								td 5A
+								td#dutyFreeWineSales
+							tr
+								td 5B
+								td#dutyFreeCoolerSales
+							tr
+								td 6A
+								td#lcboWineSales
+							tr
+								td 6B
+								td#lcboCoolerSales
+							tr
+								td 7A
+								td#wineriesWineSales
+							tr
+								td 7B
+								td#wineriesCoolerSales
+							tr
+								td 8A
+								td#exportsWineSales
+							tr
+								td 8B
+								td#exportsCoolerSales
+							tr
+								td 10A
+								td#totalNonTaxWineSales
+							tr
+								td 10B
+								td#totalNonTaxCoolerSales
+							tr 
+								td 11A
+								td#tableTaxDistWineVolume
+							tr
+								td 11B
+								td#tableTaxDistCoolerVolume
+							tr
+								td 13A
+								td#totalTaxDistWineVolume
+							tr
+								td 13B
+								td#totalTaxDistCoolerVolume
+							tr
+								td 14A
+								td#licenseeWineVolume
+							tr
+								td 14B
+								td#licenseeCoolerVolume
+							tr
+								td 15A
+								td#dutyFreeWineVolume
+							tr
+								td 15B
+								td#dutyFreeCoolerVolume
+							tr
+								td 16A
+								td#lcboWineVolume
+							tr
+								td 16B
+								td#lcboCoolerVolume
+							tr
+								td 17A
+								td#wineriesWineVolume
+							tr
+								td 17B
+								td#wineriesCoolerVolume
+							tr
+								td 18A
+								td#exportsWineVolume
+							tr
+								td 18B
+								td#exportsCoolerVolume
+							tr
+								td 20A
+								td#totalNonTaxWineVolume
+							tr
+								td 20B
+								td#totalNonTaxCoolerVolume
+					h2 Tax Return
+					table.table.table-striped

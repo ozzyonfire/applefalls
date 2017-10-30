@@ -1,5 +1,19 @@
 var items = [];
 
+var nonTaxableWine = {
+	sales: {},
+	volume: {}
+};
+var nonTaxableCooler = {
+	sales: {},
+	volume: {}
+};
+
+var totalTaxableWineSales = 0;
+var totalTaxableCoolerSales = 0;
+var totalTaxableWineVolume = 0;
+var totalTaxableCoolerVolume = 0;
+
 $(document).ready(function() {
 	$('.taxInput').on('input', function() {
 		calculateTaxTable();
@@ -16,6 +30,10 @@ $(document).ready(function() {
 
 	$('.calcVolume').on('input', function() {
 		calculateTotalVolume();
+	});
+
+	$('.calcNonTax').on('input', function() {
+		calculateNonTaxable();
 	});
 });
 
@@ -78,7 +96,7 @@ function calculateTaxTable(item) {
 		item.volumeTax = volumeTax;
 		item.environmentalTax = environmentalTax;
 		item.totalTaxPayable = totalPayable;
-		item.taxableSales = includingWineTax;
+		item.taxableSales = includingWineTax/1.061;
 	}
 }
 
@@ -145,7 +163,15 @@ function calculateTotalRow() {
 	var totalVolumeTax = 0;
 	var totalEnvironmentalTax = 0;
 	var totalTaxPayable = 0;
-	
+	var totalContainers = 0;
+	totalTaxableWineSales = 0;
+	totalTaxableCoolerSales = 0;
+	totalTaxableWineVolume = 0;
+	totalTaxableCoolerVolume = 0;
+	var totalWineVolumeTax = 0;
+	var totalCoolerVolumeTax = 0;
+
+
 	items.forEach(function(item) {
 		totalSales += item.taxableSales;
 		totalVolume += item.totalVolume;
@@ -153,12 +179,72 @@ function calculateTotalRow() {
 		totalVolumeTax += item.volumeTax;
 		totalEnvironmentalTax += item.environmentalTax;
 		totalTaxPayable += item.totalTaxPayable;
+		totalContainers += item.bottlesSold;
+
+		if (item.alcoholPercentage < 7) {
+			totalTaxableCoolerSales += item.taxableSales;
+			totalTaxableCoolerVolume += item.totalVolume;
+			totalCoolerVolumeTax += item.volumeTax;
+		} else {
+			totalTaxableWineSales += item.taxableSales;
+			totalTaxableWineVolume += item.totalVolume;
+			totalWineVolumeTax += item.volumeTax;
+		}
 	});
 
-	$('#salesTotal').text(totalSales);
+	$('#salesTotal').text(totalSales.toFixed(2));
 	$('#volumeTotal').text(totalVolume.toFixed(2));
 	$('#totalBasicTax').text(totalWineTax.toFixed(2));
 	$('#totalVolumeTax').text(totalVolumeTax.toFixed(2));
+	$('#containersTotal').text(totalContainers);
 	$('#totalEnvironmentalTax').text(totalEnvironmentalTax.toFixed(2));
 	$('#taxPayableTotal').text(totalTaxPayable.toFixed(2));
+	$('#totalTaxableWineSales').text(totalTaxableWineSales.toFixed(2));
+	$('#totalTaxableCoolerSales').text(totalTaxableCoolerSales.toFixed(2));
+	$('#totalTaxableWineVolume').text(totalTaxableWineVolume.toFixed(2));
+	$('#totalTaxableCoolerVolume').text(totalTaxableCoolerVolume.toFixed(2));
+	$('#totalWineVolumeTax').text(totalWineVolumeTax.toFixed(2));
+	$('#totalCoolerVolumeTax').text(totalCoolerVolumeTax.toFixed(2));
+}
+
+function calculateNonTaxable() {
+	var totalSalesWine = 0;
+	var totalVolumeWine = 0;
+	var totalSalesCooler = 0;
+	var totalVolumeCooler = 0;
+
+	totalSalesWine += nonTaxableWine.sales.directDelivery = parseFloat($('#directDeliveryLicenseeSalesWine').val());
+	totalVolumeWine += nonTaxableWine.volume.directDelivery = parseFloat($('#directDeliveryLicenseeVolumeWine').val());
+	totalSalesCooler += nonTaxableCooler.sales.directDelivery = parseFloat($('#directDeliveryLicenseeSalesCooler').val());
+	totalVolumeCooler += nonTaxableCooler.volume.directDelivery = parseFloat($('#directDeliveryLicenseeVolumeCooler').val());
+
+	totalSalesWine += nonTaxableWine.sales.dutyFree = parseFloat($('#dutyFreeSalesWine').val());
+	totalVolumeWine += nonTaxableWine.volume.dutyFree = parseFloat($('#dutyFreeVolumeWine').val());
+	totalSalesCooler += nonTaxableCooler.sales.dutyFree = parseFloat($('#dutyFreeSalesCooler').val());
+	totalVolumeCooler += nonTaxableCooler.volume.dutyFree = parseFloat($('#dutyFreeVolumeCooler').val());
+
+	totalSalesWine += nonTaxableWine.sales.lcbo = parseFloat($('#lcboSalesWine').val());
+	totalVolumeWine += nonTaxableWine.volume.lcbo = parseFloat($('#lcboVolumeWine').val());
+	totalSalesCooler += nonTaxableCooler.sales.lcbo = parseFloat($('#lcboSalesCooler').val());
+	totalVolumeCooler += nonTaxableCooler.volume.lcbo = parseFloat($('#lcboVolumeCooler').val());
+
+	totalSalesWine += nonTaxableWine.sales.ontarioWineries = parseFloat($('#ontarioWineriesSalesWine').val());
+	totalVolumeWine += nonTaxableWine.volume.ontarioWineries = parseFloat($('#ontarioWineriesVolumeWine').val());
+	totalSalesCooler += nonTaxableCooler.sales.ontarioWineries = parseFloat($('#ontarioWineriesSalesCooler').val());
+	totalVolumeCooler += nonTaxableCooler.volume.ontarioWineries = parseFloat($('#ontarioWineriesVolumeCooler').val());
+
+	totalSalesWine += nonTaxableWine.sales.exports = parseFloat($('#exportsSalesWine').val());
+	totalVolumeWine += nonTaxableWine.volume.exports = parseFloat($('#exportsVolumeWine').val());
+	totalSalesCooler += nonTaxableCooler.sales.exports = parseFloat($('#exportsSalesCooler').val());
+	totalVolumeCooler += nonTaxableCooler.volume.exports = parseFloat($('#exportsVolumeCooler').val());
+
+	nonTaxableWine.sales.total = totalSalesWine;
+	nonTaxableWine.volume.total = totalVolumeWine;
+	nonTaxableCooler.sales.total = totalSalesCooler;
+	nonTaxableCooler.volume.total = totalVolumeCooler;
+
+	$('#totalSalesWine').val(totalSalesWine);
+	$('#totalVolumeWine').val(totalVolumeWine);
+	$('#totalSalesCooler').val(totalSalesCooler);
+	$('#totalVolumeCooler').val(totalVolumeCooler);
 }
