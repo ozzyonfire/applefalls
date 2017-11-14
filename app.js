@@ -16,7 +16,7 @@ app.use(sslRedirect());
 // prepare DB
 var uriString = process.env.MONGODB_URI || 
                 process.env.MONGOHQ_URL ||
-                'mongodb://localhost/db';
+                'mongodb://localhost/af';
 
 mongoose.connect(uriString, function (err, res) {
   if (err) {

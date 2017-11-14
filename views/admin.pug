@@ -1,0 +1,81 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	script(type="text/javascript", src="js/admin.js")
+	title Admin
+
+	body
+		+navbar
+
+		section.bg-dark
+			.container.text-center
+				h1 Site Settings
+		section
+			.container
+				.row
+					.btn-toolbar
+						button.btn.btn-primary(type="button")#addProduct Add Product
+						button.btn.btn-primary(type="button")#getSquareItems Get Items
+				.row
+					table.table.table-hover#productTable
+						thead
+							tr
+								th Name
+								th Category
+								th Options
+						tbody#productTableBody
+
+		#addItem.modal.fade(role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(data-dismiss="modal") &times;
+						h4 Add Item 
+					.modal-body
+						.list-group#itemList
+
+		#editProductModal.modal.fade(role="dialog")
+			.modal-dialog.modal-lg
+				.modal-content
+					.modal-header
+						button.close(data-dismiss="modal") &times;
+						h4 Edit Item
+					.modal-body
+						.row.form-group
+							.col-lg-6
+								.row
+									.col-lg-6
+										label Name
+										input(type="text").form-control#productName
+									.col-lg-6
+										label Category
+										select.form-control#productCategory
+								.row
+									.col-lg-6
+										label Alcohol %
+										input(type="number", step="any").form-control#alcPercentage
+									.col-lg-6
+										label Bottle Price
+										input(type="number", step="any").form-control#bottlePrice
+								.row
+									.col-lg-6
+										label Bottle Size (ml)
+										input(type="number").form-control#bottleSize
+									.col-lg-6
+										label Minimum Order Quantity
+										input(type="number").form-control#minimumOrder
+							.col-lg-6
+								label Description
+								textarea.form-control#productDescription(rows="7")
+						.row.form-group
+							.col-lg-6
+								label Images
+								input(type="file", multiple)#productImages
+							.col-lg-6
+								label Options
+								#productOptions
+
+					.modal-footer
+						button.btn.btn-danger(type="button")#deleteProductButton Delete Item
+						button.btn.btn-success(type="button")#saveProductButton Save Item

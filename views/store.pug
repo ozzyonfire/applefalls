@@ -1,0 +1,112 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title AFC - Online Store
+	
+	body#page-top
+		+navbar("store")
+		header.store#page-scroll
+			.header-content
+				.header-content-inner
+					h1 Online Store
+					hr
+					p Please, don't get up.
+		section.text-center
+			.container
+				.row.text-center
+					h1 Cider
+					hr
+				.row
+					.col-lg-3.cider-label
+						a(data-target="#itemModal", href="#", data-toggle="modal")
+							img.img-rounded.img-responsive.center-block(src="./img/cider/act2-square.png")
+						p.label.label-success.badge-text.sans-serif-font New!
+						
+					.col-lg-3.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/crush-square.png")
+						p.label.label-success.badge-text.sans-serif-font New!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Crush
+								p A simple cider made with only Pioneer McIntosh apples and crushed strawberries from Campbell's Orchards. Sold in a 750ml bottle, this is the perfect drink to bring to social events and share with your friends!
+					
+					.col-lg-3.cider-label
+						img.img-rounded.img-responsive.center-block(src="./img/cider/beekeeper.png")
+						p.label.label-success.badge-text.sans-serif-font New!
+						.overlay.img-rounded.center-block
+							.overlay-caption
+								h2 Beekeeper
+								p A crisp, off-dry cider with a hint of honey. Made with Honeycrisp and Golden Russet apples, this cider is the perfect blend of sweet and smooth. 
+
+					.col-lg-3.cider-label
+						a(data-target="#itemModal", href="#", data-toggle="modal")
+							img.img-rounded.img-responsive.center-block(src="./img/cider/act2-square.png")
+						p.label.label-success.badge-text.sans-serif-font New!
+						
+		#itemModal.modal.fade(role="dialog")
+				.modal-dialog.modal-lg
+					.modal-content
+						.modal-header
+							button.close(data-dismiss="modal") &times;
+							h4#itemNameTitle Premiere Act II
+						.modal-body
+							.row
+								.col-lg-6
+									#imageCarousel.carousel.slide(data-ride="carousel")
+										ol.carousel-indicators
+											li(data-target="#imageCarousel", data-slide-to="0").active
+											li(data-target="#imageCarousel", data-slide-to="1")
+											li(data-target="#imageCarousel", data-slide-to="2")
+										.carousel-inner
+											.item.active
+												img.img-rounded.img-responsive.center-block(src="./img/cider/act2-square.png")
+											.item
+												img.img-rounded.img-responsive.center-block(src="./img/cider/crush-square.png")
+											.item
+												img.img-rounded.img-responsive.center-block(src="./img/cider/beekeeper.png")
+										a.top50percent.carousel-control(href="#imageCarousel", data-slide="prev")
+											span.fa.fa-chevron-left
+											span.sr-only Previous
+										a.carousel-control.top50percent.right-control(href="#imageCarousel", data-slide="next")
+											span.fa.fa-chevron-right
+											span.sr-only Next
+								.col-lg-6
+									.row
+										.col-lg-12
+											p#itemDescription Based on the success of our original Premiere, we recreated our first cider with more complexities but using the same traditional techniques. Expect a very dry cider with some more body and a slightly bitter finish, reminiscent of apple skin.
+									.row
+										.col-lg-12
+											table.table.table-striped
+												tbody
+													tr 
+														td Alc. / Vol.
+														td 6.9%
+													tr
+														td Bottle Size
+														td 500 ml
+													tr 
+														td Shipping
+														td Ships within 7 days
+													tr
+														td Share
+														td Share buttons
+									.row
+										.col-lg-6
+											.form-group
+												label Options
+												select.form-control
+													option Choose an option
+													option Four Pack - $26
+													option 12 Pack - $78
+										.col-lg-6
+											.form-group
+												label Quantity 
+												input.form-control(type="Number", value="1", step="1")
+						.modal-footer
+							button.btn.btn-success(type"button") Add to Cart
+
+
+
+
+		+footer

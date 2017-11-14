@@ -45,23 +45,23 @@ html(lang="en")
 							thead
 								tr
 									th Day
-									th Tasting Room
 									th Bottle Shop
+									th Tasting Room
 							tbody
 								tr
-									+hourTableRow('Monday', 'Closed', '9 am - 5:30 pm')
+									+hourTableRow('Monday', '9 am - 5:30 pm', 'Closed')
 								tr
-									+hourTableRow('Tuesday', 'Closed', '9 am - 5:30 pm')
+									+hourTableRow('Tuesday', '9 am - 5:30 pm', 'Closed')
 								tr
-									+hourTableRow('Wednesday', 'Closed', '9 am - 5:30 pm')
+									+hourTableRow('Wednesday', '9 am - 5:30 pm', 'Closed')
 								tr
-									+hourTableRow('Thursday', 'Closed', '9 am - 5:30 pm')
+									+hourTableRow('Thursday', '9 am - 5:30 pm', 'Closed')
 								tr
-									+hourTableRow('Friday', 'Closed', '9 am - 5:30 pm')
+									+hourTableRow('Friday', '9 am - 5:30 pm', 'Closed')
 								tr
-									+hourTableRow('Saturday', '11:30 am - 4:30 pm', '9 am - 5:30 pm')
+									+hourTableRow('Saturday', '9 am - 5:30 pm', '11:30 am - 4:30 pm')
 								tr
-									+hourTableRow('Sunday', '11:30 am - 4:30 pm', '10 am - 5 pm')
+									+hourTableRow('Sunday', '10 am - 5 pm', '11:30 am - 4:30 pm')
 					.col-lg-4.col-md-4.col-sm-4.text-center.lead
 						h2 Hours
 						hr.light
@@ -77,27 +77,34 @@ html(lang="en")
 						h1.section-heading About Us
 						hr.primary
 				.row
-					.col-lg-4.col-md-4.col-sm-4.text-center
+					.col-lg-3.col-md-3.col-sm-3.text-center
 						.service-box
 							i.fa.fa-4x.icon-beer.wow.bounceIn.text-primary(data-wow-delay="0s")
 							h3 Our Cider
 							p.text-muted Unpasteurized and unfiltered. Created using traditional techniques from Campbell's Orchards' apples.
 							hr.primary
 							a(href="/our-cider").btn.btn-primary Read more
-					.col.lg-4.col-md-4.col-sm-4.text-center
+					.col.lg-3.col-md-3.col-sm-3.text-center
 						.service-box
 							i.fa.fa-4x.fa-newspaper-o.wow.bounceIn.text-primary(data-wow-delay="0.1s")
 							h3 Events
 							p.text-muted Find out what's happening at Apple Falls and Campbell's Orchards.
 							hr.primary
 							a(href="/events").btn.btn-primary Read more
-					.col.lg-4.col-md-4.col-sm-4.text-center
+					.col.lg-3.col-md-3.col-sm-3.text-center
 						.service-box
 							i.fa.fa-4x.fa-pencil-square-o.wow.bounceIn.text-primary(data-wow-delay="0.2s")
 							h3 Our Story
 							p.text-muted Apple Falls Cider creates ciders that feature the true flavours of Prince Edward County.
 							hr.primary
 							a(href="/our-story").btn.btn-primary Read more
+					.col.lg-3.col-md-3.col-sm-3.text-center
+						.service-box
+							i.fa.fa-4x.fa-shopping-cart.wow.bounceIn.text-primary(data-wow-delay="0.3s")
+							h3 Store
+							p.text-muted Order our cider online and have it shipped directly to your door!
+							hr.primary
+							a(href="http://store.applefallscider.ca/").btn.btn-primary Shop now
 		section.no-padding
 			.container-fluid
 				.row.no-gutter

@@ -1,10 +1,13 @@
 var Code = require('./model/code');
-
+var products = require('./products');
+var fs = require('fs');
+var path = require('path');
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 module.exports = function(io) {
 	io.on('connection', function(socket) {
 		var q1, q2, q3, q4, q5;
+
 		socket.on('validate', function(name, value) {
 			value = value.toLowerCase();
 
@@ -56,7 +59,36 @@ module.exports = function(io) {
 				});
 			}
 		});
+		
+		socket.on('addProduct', function() {
+			products.getStoreLocations();
+		});
 
+		socket.on('getSquareCatalog', function(types) {
+			products.getCatalog(types, function(catalogItems) {
+				socket.emit('squareCatalogFinished', catalogItems);
+			});
+		});
+
+		socket.on('getSquareCategories', function() {
+			products.getCatalog('category', function(categories) {
+				socket.emit('squareCategoriesFinished', categories);
+			});
+		});
+
+		socket.on('saveProductImage', function(name, buffer) {
+			var fileName = path.resolve(__dirname + '/../public/img/products/'+name);
+			fs.open(fileName, 'a', 0755, function(err, fd) {
+				if (err) {
+					throw err;
+				}
+				fs.write(fd, buffer, null, 'Binary', function(err, written, buff) {
+					fs.close(fd, function() {
+						console.log('File saved successfully');
+					});
+				});
+			});
+		});
 	});
 }
 

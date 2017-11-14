@@ -34,4 +34,12 @@ module.exports = function(app) {
 	app.get('/calculator', function(req, res) {
 		res.render('calculator');
 	});
+
+	app.get('/store', function(req, res) {
+		res.render('store');
+	});
+
+	app.get('/admin', function(req, res) {
+		res.render('admin');
+	});
 }

@@ -24,6 +24,7 @@
     "mongoose": "^4.11.12",
     "pug": "^2.0.0-rc.3",
     "request": "^2.81.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "square-connect": "0.0.2"
   }
 }
