@@ -1,6 +1,8 @@
 var socket = io();
 var categories = [];
 var itemList = [];
+var theItem = {};
+var theOption = {};
 
 function setupNewReader(file) {
 	var reader = new FileReader();
@@ -14,6 +16,7 @@ function setupNewReader(file) {
 
 $(document).ready(function() {
 	$('#addProduct').click(function() {
+		populateProductModal(getDefaultItem());
 		$('#editProductModal').modal();
 	});
 
@@ -22,13 +25,48 @@ $(document).ready(function() {
 	});
 
 	$('#saveProductButton').click(function() {
-		var files = $('#productImages')[0].files;
-		for(var i = 0; i < files.length; i++) {
-			setupNewReader(files[i]);
-		}
+		saveItem();
+		socket.emit('saveItem', theItem);
+		$('#editProductModal').modal('hide');
+	});
+
+	$('#addOptionButton').click(function() {
+		saveItem();
+		$('#optionModal').modal();
+		var option = {
+			name: 'Regular',
+			price: '7.50'
+		};
+		theItem.options.push(option);
+		populateOptionModal(option);
+	});
+
+	$('#saveOptionButton').click(function() {
+		saveOption();
+		populateProductModal(theItem);
+		$('#optionModal').modal('hide');
+	});
+
+	$('#deleteOptionButton').click(function() {
+		theItem.options.splice($.inArray(theOption, theItem.options), 1);
+		populateProductModal(theItem);
+		$('#optionModal').modal('hide');
 	});
 
 	socket.emit('getSquareCategories');
+	socket.emit('getItems');
+});
+
+socket.on('saveItemFinished', function() {
+	socket.emit('getItems');
+});
+
+socket.on('getItemsFinished', function(items) {
+	$('#productTableBody').empty();
+	console.log(items);
+	items.forEach(function(item) {
+		addProductToTable(item);
+	});
 });
 
 socket.on('squareCatalogFinished', function(items) {
@@ -59,11 +97,11 @@ socket.on('squareCatalogFinished', function(items) {
 
 socket.on('squareCategoriesFinished', function(cats) {
 	console.log(cats);
-	$('#productCategory').empty();
-	cats.forEach(function(category) {
-		var categoryName = category.category_data.name;
-		$('#productCategory').append($('<option></option>').prop('value', categoryName).text(categoryName));
-	});
+	// $('#productCategory').empty();
+	// cats.forEach(function(category) {
+	// 	var categoryName = category.category_data.name;
+	// 	$('#productCategory').append($('<option></option>').prop('value', categoryName).text(categoryName));
+	// });
 	categories = cats;
 });
 
@@ -94,6 +132,23 @@ function createItem(squareItem) {
 	return item;
 }
 
+function getDefaultItem() {
+	var item = {
+		name: 'New Item',
+		categoryName: 'Cider',
+		options: [{
+			name: 'Regular',
+			price: '0.00',
+			minimumQuantity: 1
+		}],
+		description: 'Default item description',
+		alcoholPercentage: '7',
+		bottleSize: '500',
+		images: ['/img/products/default.png']
+	};
+	return item;
+}
+
 function addProductToTable(item) {
 	var row = $('<tr></tr>');
 
@@ -117,33 +172,69 @@ function addProductToTable(item) {
 }
 
 function populateProductModal(item) {
+	theItem = item;
 	$('#productName').val(item.name);
 	$('#productCategory').val(item.categoryName);
 	$('#alcPercentage').val(item.alcoholPercentage);
 	$('#bottleSize').val(item.bottleSize);
 	$('#productDescription').val(item.description);
 
-	$('#productOptions').empty();
+	$('#optionTableBody').empty();
 	item.options.forEach(function(option) {
-		var row = $('<div class="row"></row>');
-		var nameCol = $('<div class="col-lg-5"></div>');
-		var priceCol = $('<div class="col-lg-5"></div>');
-		var deleteCol = $('<div class="col-lg-2"></div>');
+		var row = $('<tr></tr>');
+		var nameCol = $('<<td></td>');
+		var priceCol = $('<td></td>');
+		var orderCol = $('<td></td>');
 
-		nameCol.append($('<label>Name</label>'));
-		nameCol.append($('<input type="text">').val(option.name).addClass('form-control'));
-
-		priceCol.append($('<label>Price</label>'));
-		priceCol.append($('<input type="number">').val(option.price).addClass('form-control'));
+		nameCol.text(option.name);
+		priceCol.text(option.price);
+		orderCol.text(option.minimumQuantity);
 
 		row.append(nameCol);
 		row.append(priceCol);
-		row.append(deleteCol);
+		row.append(orderCol);
 
-		$('#productOptions').append(row);
+		row.click(function() {
+			saveItem();
+			$('#optionModal').modal();
+			populateOptionModal(option);
+		});
+
+		$('#optionTableBody').append(row);
 	});
 
+	var images = '';
 	item.images.forEach(function(image) { // todo
-		console.log(image.name);
+		images += image + '\n';
 	});
+	images = images.substring(0, images.length-1);
+	$('#productImages').val(images);
+}
+
+function populateOptionModal(option) {
+	theOption = option;
+	$('#addOptionName').val(option.name);
+	$('#addOptionPrice').val(option.price);
+	$('#optionMinimumQuantity').val(option.minimumQuantity);
+}
+
+function saveOption() {
+	theOption.name = $('#addOptionName').val();
+	theOption.price = $('#addOptionPrice').val();
+	theOption.minimumQuantity = $('#optionMinimumQuantity').val();
+}
+
+function saveItem() {
+	theItem.name = $('#productName').val();
+	theItem.Category = $('#productCategory').val();
+	theItem.alcoholPercentage = $('#alcPercentage').val();
+	theItem.bottleSize = $('#bottleSize').val();
+	theItem.description = $('#productDescription').val();
+
+	var images = [];
+	var imageString = $('#productImages').val();
+	images = imageString.split('\n');
+	theItem.images = images;
+
+	// the options should already be saved
 }

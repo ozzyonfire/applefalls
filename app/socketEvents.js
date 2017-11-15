@@ -89,6 +89,20 @@ module.exports = function(io) {
 				});
 			});
 		});
+
+		socket.on('saveItem', function(item) {
+			var saveItem = products.saveItem(item);
+			saveItem.then(function(newItem) {
+				socket.emit('saveItemFinished');
+			});
+		});
+
+		socket.on('getItems', function() {
+			var itemsFinished = products.getItems();
+			itemsFinished.then(function(items) {
+				socket.emit('getItemsFinished', items);
+			});
+		});
 	});
 }
 

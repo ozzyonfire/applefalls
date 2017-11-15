@@ -46,11 +46,11 @@ mixin navbar(active)
 						a(href="#") Social #[span.caret]
 						ul.dropdown-menu
 							li
-								a(href="https://www.facebook.com/applefallscider", target="_blank") #[i.fa.fa-facebook.fa-fw] Facebook
+								a(href="https://www.facebook.com/applefallscider", target="_blank") #[i.fab.fa-facebook.fa-fw] Facebook
 							li
-								a(href="https://twitter.com/AppleFallsCider", target="_blank") #[i.fa.fa-twitter.fa-fw]Twitter
+								a(href="https://twitter.com/AppleFallsCider", target="_blank") #[i.fab.fa-twitter.fa-fw]Twitter
 							li
-								a(href="https://www.instagram.com/applefallscider/", target="_blank") #[i.fa.fa-instagram.fa-fw] Instagram
+								a(href="https://www.instagram.com/applefallscider/", target="_blank") #[i.fab.fa-instagram.fa-fw] Instagram
 
 mixin activeNav(name)
 	li.active
@@ -64,29 +64,29 @@ mixin footer
 	aside.bg-dark.footer
 		.container
 			.row.visible-lg.visible-md.hidden-sm.hidden-xs.text-center
-				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
-				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+				+contactIcon('fa-envelope', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card', "https://goo.gl/maps/DteZJVS2wTQ2")
 				+contactIcon('fa-phone', "tel:+1-613-242-8433")
-				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
-				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
-				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+				+socialIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+				+socialIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+socialIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
 			.row.hidden-lg.hidden-md.visible-sm.hidden-xs.text-center
-				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
-				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+				+contactIcon('fa-envelope', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card', "https://goo.gl/maps/DteZJVS2wTQ2")
 				+contactIcon('fa-phone', "tel:+1-613-242-8433")
 			.row.hidden-lg.hidden-md.visible-sm.hidden-xs.text-center
-				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
-				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
-				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+				+socialIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+				+socialIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+socialIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
 			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
-				+contactIcon('fa-envelope-o', "mailto:info@applefallscider.ca")
-				+contactIcon('fa-address-card-o', "https://goo.gl/maps/DteZJVS2wTQ2")
+				+contactIcon('fa-envelope', "mailto:info@applefallscider.ca")
+				+contactIcon('fa-address-card', "https://goo.gl/maps/DteZJVS2wTQ2")
 			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
 				+contactIcon('fa-phone', "tel:+1-613-242-8433")
-				+contactIcon('fa-facebook', "https://www.facebook.com/applefallscider")
+				+socialIcon('fa-facebook', "https://www.facebook.com/applefallscider")
 			.row.hidden-lg.hidden-md.hidden-sm.visible-xs.text-center
-				+contactIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
-				+contactIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
+				+socialIcon('fa-twitter', "https://twitter.com/AppleFallsCider")
+				+socialIcon('fa-instagram', "https://www.instagram.com/applefallscider/")
 			.row.text-center
 				.col-lg-12
 					p.footer-text Read our #[a(href="/privacy") privacy policy]. 
@@ -95,7 +95,13 @@ mixin contactIcon(iconName, link)
 	.col-lg-2.col-md-2.col-sm-4.col-xs-6
 		.service-box
 			a(href=link, target="_blank")
-				i.fa.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
+				i.far.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
+
+mixin socialIcon(iconName, link)
+	.col-lg-2.col-md-2.col-sm-4.col-xs-6
+		.service-box
+			a(href=link, target="_blank")
+				i.fab.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
 
 mixin subscribe
 	.container.text-center

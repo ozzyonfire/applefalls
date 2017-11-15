@@ -40,42 +40,64 @@ html(lang="en")
 				.modal-content
 					.modal-header
 						button.close(data-dismiss="modal") &times;
-						h4 Edit Item
+						h4 Add/Edit Item
 					.modal-body
 						.row.form-group
 							.col-lg-6
-								.row
+								.row.form-group
 									.col-lg-6
 										label Name
 										input(type="text").form-control#productName
 									.col-lg-6
 										label Category
-										select.form-control#productCategory
-								.row
+										input(type="text").form-control#productCategory
+								.row.form-group
 									.col-lg-6
 										label Alcohol %
 										input(type="number", step="any").form-control#alcPercentage
 									.col-lg-6
-										label Bottle Price
-										input(type="number", step="any").form-control#bottlePrice
-								.row
-									.col-lg-6
 										label Bottle Size (ml)
 										input(type="number").form-control#bottleSize
-									.col-lg-6
-										label Minimum Order Quantity
-										input(type="number").form-control#minimumOrder
 							.col-lg-6
 								label Description
 								textarea.form-control#productDescription(rows="7")
-						.row.form-group
+						.row
 							.col-lg-6
 								label Images
-								input(type="file", multiple)#productImages
+								textarea.form-control(rows="4")#productImages
 							.col-lg-6
 								label Options
-								#productOptions
-
+								table.table.table-striped.table-hover
+									thead
+										tr
+											th Name
+											th Price
+											th Min. Quantity
+									tbody#optionTableBody
+								button.btn.btn-default#addOptionButton Add Option
 					.modal-footer
 						button.btn.btn-danger(type="button")#deleteProductButton Delete Item
 						button.btn.btn-success(type="button")#saveProductButton Save Item
+
+		#optionModal.modal.fade(role="dialog", data-backdrop="false", style="z-index:1080")
+				.modal-dialog
+					.modal-content
+						.modal-header
+							button.close(data-dismiss="modal") &times;
+							h4 Add/Edit Option
+						.modal-body
+							.row.form-group
+								.col-lg-3
+									label Option Name
+									input(type="text").form-control#addOptionName
+								.col-lg-3
+									label Option Price
+									.input-group
+										.input-group-addon $
+										input.form-control(type="number")#addOptionPrice
+								.col-lg-3
+									label Min. Quantity
+									input.form-control(type="number")#optionMinimumQuantity
+						.modal-footer
+							button.btn.btn-danger(type="button")#deleteOptionButton Delete Option
+							button.btn.btn-success(type="button")#saveOptionButton Save Option

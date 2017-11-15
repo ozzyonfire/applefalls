@@ -1,3 +1,5 @@
+var Item = require('./model/item');
+
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		res.render('home');
@@ -36,10 +38,19 @@ module.exports = function(app) {
 	});
 
 	app.get('/store', function(req, res) {
-		res.render('store');
+		var findCiders = Item.find({categoryName: 'Cider'});
+		findCiders.then(function(ciders) {
+			res.render('store', {
+				ciders: ciders
+			});
+		});
 	});
 
 	app.get('/admin', function(req, res) {
 		res.render('admin');
+	});
+
+	app.get('/test', function(req, res) {
+		res.render('test');
 	});
 }

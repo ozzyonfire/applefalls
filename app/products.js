@@ -1,6 +1,6 @@
 var SquareConnect = require('square-connect');
 var request = require('request');
-
+var Item = require('./model/item');
 
 function getStoreLocations() {
 	request(getOptions('locations','GET'), genericCallback);
@@ -33,7 +33,40 @@ function genericCallback(err, response, body) {
 	console.log(jsonBody);
 }
 
+function saveItem(item) {
+	var findItem = Item.findOne({_id: item._id});
+	var itemSaved = findItem.then(function(dbItem) {
+		if (dbItem) {
+			return updateItemProperties(dbItem, item);
+		} else {
+			var newItem = new Item();
+			return updateItemProperties(newItem, item);
+		}
+	});
+
+	return itemSaved;
+}
+
+function getItems() {
+	return Item.find({});
+}
+
+function updateItemProperties(dbItem, item) {
+	dbItem.name = item.name;
+	dbItem.categoryName = item.categoryName;
+	dbItem.sku = item.sku;
+	dbItem.minimumOrderQuantity = item.minimumOrderQuantity;
+	dbItem.options = item.options;
+	dbItem.description = item.description;
+	dbItem.alcoholPercentage = item.alcoholPercentage;
+	dbItem.bottleSize = item.bottleSize;
+	dbItem.images = item.images;
+	return dbItem.save();
+}
+
 module.exports = {
 	getStoreLocations: getStoreLocations,
-	getCatalog: getCatalog
+	getCatalog: getCatalog,
+	saveItem: saveItem,
+	getItems: getItems
 }
