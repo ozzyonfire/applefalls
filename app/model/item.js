@@ -17,7 +17,12 @@ var itemSchema = new mongoose.Schema({
 	description: String,
 	alcoholPercentage: Number,
 	bottleSize: Number,
-	images: [String]
+	images: [String],
+	taxes: [{
+		name: String,
+		type: String,
+		percentage: Number
+	}]
 });
 
 module.exports = mongoose.model('Item', itemSchema);

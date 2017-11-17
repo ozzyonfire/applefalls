@@ -28,6 +28,8 @@ html(lang="en")
 				.row
 					each cider in ciders
 						+listing(cider)
+				.row
+					+squarePaymentForm
 						
 		#itemModal.modal.fade(role="dialog")
 				.modal-dialog.modal-lg
@@ -89,11 +91,8 @@ html(lang="en")
 												label Quantity 
 												input.form-control#quantityInput(type="Number", value="1", step="1")
 						.modal-footer
-							button.btn.btn-success.btn-lg(type"button") Add to Cart
+							button.btn.btn-success.btn-lg(type"button")#addToCartButton Add to Cart
 								|	 
 								span.label.label-default#itemSubtotal
-
-
-
 
 		+footer

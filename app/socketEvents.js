@@ -103,6 +103,24 @@ module.exports = function(io) {
 				socket.emit('getItemsFinished', items);
 			});
 		});
+
+		socket.on('getCart', function() {
+			var getCart = products.getCart(socket.request.sessionID);
+			getCart.then(function(order) {
+				socket.emit('getCartFinished', order);
+			});
+		});
+
+		socket.on('addItemToCart', function(lineItem) {
+			var saveCart = products.addItemToCart(lineItem, socket.request.sessionID);
+			saveCart.then(function(cart) {
+				socket.emit('addItemToCartFinished', cart.order);
+			});
+		});
+
+		socket.on('saveCart', function(order) {
+			var saveCartPromise = products.saveCart(socket.request.sessionID, order);
+		});
 	});
 }
 

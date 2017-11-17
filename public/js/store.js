@@ -1,5 +1,5 @@
-var socket = io();
 var currentOption = {};
+var theItem = {};
 
 $(document).ready(function() {
 	$('#quantityInput').on('input', function() {
@@ -9,10 +9,30 @@ $(document).ready(function() {
 	$('#quantityInput').on('change', function() {
 		calculateSubtotal();
 	});
+
+	$('#addToCartButton').click(function() {
+		$('#itemModal').modal('hide');
+		var lineItem = {
+			note: theItem._id, // use this as an identifier so we don't add duplicates
+			name: theItem.name,
+			quantity: $('#quantityInput').val(),
+			base_price_money: {
+				amount: currentOption.price,
+				currency: 'CAD'
+			},
+			variation_name: currentOption.name
+		};
+		socket.emit('addItemToCart', lineItem);
+	});
+});
+
+socket.on('addItemToCartFinished', function(cart) {
+	console.log(cart);
+	updateShoppingCart(cart);
 });
 
 function populateListingModal(item) {
-	console.log(item);
+	theItem = item;
 	$('#itemNameTitle').text(item.name);
 	$('#itemDescription').text(item.description);
 	$('#alcoholPercentage').text(item.alcoholPercentage + '%');

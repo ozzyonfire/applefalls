@@ -1,4 +1,3 @@
-var socket = io();
 var categories = [];
 var itemList = [];
 var theItem = {};
@@ -56,6 +55,10 @@ $(document).ready(function() {
 	socket.emit('getSquareCategories');
 	socket.emit('getItems');
 });
+
+socket.on('connect', () => {
+	console.log(socket.id);
+})
 
 socket.on('saveItemFinished', function() {
 	socket.emit('getItems');

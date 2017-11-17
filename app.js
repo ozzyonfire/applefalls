@@ -1,6 +1,7 @@
 require('dotenv').config();
 var sslRedirect = require('heroku-ssl-redirect');
 var express = require('express');
+var session = require('express-session');
 var routes = require('./app/routes');
 var facebook = require('./app/facebook');
 var socketEvents = require('./app/socketEvents');
@@ -32,6 +33,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+var sessionMiddleware = session({
+	secret: 'an apple a day',
+	cookie: {
+		expires: false
+	}
+});
+
+app.use(sessionMiddleware);
+
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap-wysiwyg/js/'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap-notify/'));
@@ -41,6 +51,10 @@ var server = app.listen(process.env.PORT || 8888, function() {
 });
 
 var io = require('socket.io')(server);
+
+io.use(function(socket, next) {
+	sessionMiddleware(socket.request, socket.request.res, next);
+});
 
 routes(app);
 facebook(app);

@@ -51,6 +51,11 @@ mixin navbar(active)
 								a(href="https://twitter.com/AppleFallsCider", target="_blank") #[i.fab.fa-twitter.fa-fw]Twitter
 							li
 								a(href="https://www.instagram.com/applefallscider/", target="_blank") #[i.fab.fa-instagram.fa-fw] Instagram
+					li
+						a(href="#", style="padding: 10px 15px 0px 0px;display:block;")#shoppingCartIcon
+							i.fal.fa-shopping-cart.fa-2x
+							span.badge#cartBadge(style="margin: 0 0 25px 2px") 0
+
 
 mixin activeNav(name)
 	li.active
@@ -90,18 +95,19 @@ mixin footer
 			.row.text-center
 				.col-lg-12
 					p.footer-text Read our #[a(href="/privacy") privacy policy]. 
+	+shoppingCart
 
 mixin contactIcon(iconName, link)
 	.col-lg-2.col-md-2.col-sm-4.col-xs-6
-		.service-box
+		.service-box.wow.fadeInDown
 			a(href=link, target="_blank")
-				i.far.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
+				i.far.fa-2x(class=iconName)
 
 mixin socialIcon(iconName, link)
 	.col-lg-2.col-md-2.col-sm-4.col-xs-6
-		.service-box
+		.service-box.wow.fadeInDown
 			a(href=link, target="_blank")
-				i.fab.fa-2x.wow.bounceIn(class=iconName, data-wow-delay='0s')
+				i.fab.fa-2x(class=iconName)
 
 mixin subscribe
 	.container.text-center
@@ -125,3 +131,67 @@ mixin subscribe
 					script(type='text/javascript', src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
 					script(type='text/javascript').
 						(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+
+mixin shoppingCart
+	#shoppingCartModal.modal.fade(role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close#closeShoppingCart &times;
+					h4 Shopping Cart
+				.modal-body
+					.row 
+						.col-lg-12
+							h2 Order Overview
+					//.row
+						.col-lg-4
+							h3 Item
+						.col-lg-3
+							h3 Option
+						.col-lg-2
+							h3 Quantity
+						.col-lg-3
+							h3 Subtotal
+					#shoppingCartModalBody
+					.row
+						.col-lg-9.text-right
+							h4 Subtotal
+						.col-lg-3
+							h4#subtotalModal $0.00
+				.modal-footer
+					button.btn.btn-success(type="button") Checkout
+
+mixin squarePaymentForm
+	#sq-ccbox
+		form#nonce-form(novalidate action="/process-card" method="post")
+			p Pay with a credit card.
+			table
+				tbody
+					tr
+						td Card Number:
+						td
+							#sq-card-number
+					tr
+						td CVV:
+						td
+							#sq-cvv
+					tr
+						td Expiration Date:
+						td
+							#sq-expiration-date
+					tr
+						td Postal Code:
+						td
+							#sq-postal-code
+					tr
+						td(colspan="2")
+							button#sq-creditcard.button-credit-card(onclick="requestCardNonce(event)") Pay with card
+			input#card-nonce(type="hidden" name="nonce")
+	#sq-walletbox
+		p Pay with a Digital Wallet
+		#sq-apple-pay-label.wallet-not-enabled Apple Pay for Web not enabled.
+		button#sq-apple-pay.button-apple-pay
+
+		#sq-masterpass-label.wallet-not-enabled Masterpass not enabled
+		button#sq-masterpass.button-masterpass
+

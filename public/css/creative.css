@@ -655,3 +655,7 @@ body {
 .top50percent {
   top: 50%;
 }
+.thin-line {
+  max-width: 3000px;
+  border-width: 1px;
+}

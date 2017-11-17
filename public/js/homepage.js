@@ -1,5 +1,3 @@
-var socket = io();
-
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
