@@ -121,6 +121,26 @@ module.exports = function(io) {
 		socket.on('saveCart', function(order) {
 			var saveCartPromise = products.saveCart(socket.request.sessionID, order);
 		});
+
+		socket.on('checkout', function(isShipped) {
+			products.checkoutViaSquare(socket.request.sessionID, isShipped, function(url) {
+				socket.emit('checkoutURL', url);
+			});
+		});
+
+		socket.on('saveCategory', function(category) {
+			var saveCat = products.saveCategory(category);
+			saveCat.then(function(cat) {
+				console.log('category saved');
+			});
+		});
+
+		socket.on('getCategories', function() {
+			var getCats = products.getCategories();
+			getCats.then(function(cats) {
+				socket.emit('getCategoriesFinished', cats);
+			});
+		});
 	});
 }
 

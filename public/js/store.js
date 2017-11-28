@@ -16,8 +16,9 @@ $(document).ready(function() {
 			note: theItem._id, // use this as an identifier so we don't add duplicates
 			name: theItem.name,
 			quantity: $('#quantityInput').val(),
+			categoryName: theItem.categoryName,
 			base_price_money: {
-				amount: currentOption.price,
+				amount: currentOption.price * 100,
 				currency: 'CAD'
 			},
 			variation_name: currentOption.name

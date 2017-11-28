@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
 var sessionMiddleware = session({
 	secret: 'an apple a day',
 	cookie: {
-		expires: false
+		maxAge: 7 * 60 * 60 * 1000
 	}
 });
 

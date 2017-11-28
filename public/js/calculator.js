@@ -122,6 +122,7 @@ function addItemRow(item) {
 	var name = $('<td></td>').text(item.name);
 	var sales = $('<td></td>').text(item.taxableSales.toFixed(2));
 	var volume = $('<td></td>').text(item.totalVolume);
+	var containers = $('<td></td>').text(item.bottlesSold);
 	var wineTax = $('<td></td>').text(item.wineTax.toFixed(2));
 	var volumeTax = $('<td></td>').text(item.volumeTax.toFixed(2));
 	var environmentalTax = $('<td></td>').text(item.environmentalTax.toFixed(2));
@@ -130,6 +131,7 @@ function addItemRow(item) {
 	row.append(name);
 	row.append(sales);
 	row.append(volume);
+	row.append(containers);
 	row.append(wineTax);
 	row.append(volumeTax);
 	row.append(environmentalTax);
@@ -179,7 +181,7 @@ function calculateTotalRow() {
 		totalVolumeTax += item.volumeTax;
 		totalEnvironmentalTax += item.environmentalTax;
 		totalTaxPayable += item.totalTaxPayable;
-		totalContainers += item.bottlesSold;
+		totalContainers += parseInt(item.bottlesSold);
 
 		if (item.alcoholPercentage < 7) {
 			totalTaxableCoolerSales += item.taxableSales;

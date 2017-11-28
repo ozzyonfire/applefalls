@@ -2,6 +2,7 @@ var categories = [];
 var itemList = [];
 var theItem = {};
 var theOption = {};
+var theCategory = {};
 
 function setupNewReader(file) {
 	var reader = new FileReader();
@@ -19,8 +20,19 @@ $(document).ready(function() {
 		$('#editProductModal').modal();
 	});
 
+	$('#addCategory').click(function() {
+		populateCategoryModal(getDefaultCategory());
+		$('#categoryModal').modal();
+	});
+
 	$('#getSquareItems').click(function() {
 		socket.emit('getSquareCatalog', 'item');
+	});
+
+	$('#saveCategoryButton').click(function() {
+		saveCategory();
+		socket.emit('saveCategory', theCategory);
+		$('#categoryModal').modal('hide');
 	});
 
 	$('#saveProductButton').click(function() {
@@ -54,11 +66,12 @@ $(document).ready(function() {
 
 	socket.emit('getSquareCategories');
 	socket.emit('getItems');
+	socket.emit('getCategories');
 });
 
 socket.on('connect', () => {
 	console.log(socket.id);
-})
+});
 
 socket.on('saveItemFinished', function() {
 	socket.emit('getItems');
@@ -69,6 +82,15 @@ socket.on('getItemsFinished', function(items) {
 	console.log(items);
 	items.forEach(function(item) {
 		addProductToTable(item);
+	});
+});
+
+socket.on('getCategoriesFinished', function(dbCategories) {
+	categories = dbCategories;
+	console.log(dbCategories);
+	$('#categoryTableBody').empty();
+	categories.forEach((cat) => {
+		addCategoryToTable(cat);
 	});
 });
 
@@ -99,13 +121,13 @@ socket.on('squareCatalogFinished', function(items) {
 });
 
 socket.on('squareCategoriesFinished', function(cats) {
-	console.log(cats);
+	//console.log(cats);
 	// $('#productCategory').empty();
 	// cats.forEach(function(category) {
 	// 	var categoryName = category.category_data.name;
 	// 	$('#productCategory').append($('<option></option>').prop('value', categoryName).text(categoryName));
 	// });
-	categories = cats;
+	//categories = cats;
 });
 
 function createItem(squareItem) {
@@ -152,6 +174,15 @@ function getDefaultItem() {
 	return item;
 }
 
+function getDefaultCategory() {
+	var category = {
+		name: '',
+		minimumOrder: 0
+	};
+
+	return category;
+}
+
 function addProductToTable(item) {
 	var row = $('<tr></tr>');
 
@@ -172,6 +203,31 @@ function addProductToTable(item) {
 	});
 
 	$('#productTableBody').append(row);
+}
+
+function addCategoryToTable(category) {
+	var row = $('<tr></tr>');
+
+	var name = $('<td></td>');
+	name.text(category.name);
+	var minimumQuantity = $('<td></td>');
+	minimumQuantity.text(category.minimumOrder);
+
+	row.append(name);
+	row.append(minimumQuantity);
+
+	row.click(() => {
+		populateCategoryModal(category);
+		$('#categoryModal').modal();
+	});
+
+	$('#categoryTableBody').append(row);
+}
+
+function populateCategoryModal(category) {
+	theCategory = category;
+	$('#categoryNameModal').val(category.name);
+	$('#categoryMinimumModal').val(category.minimumOrder);
 }
 
 function populateProductModal(item) {
@@ -240,4 +296,9 @@ function saveItem() {
 	theItem.images = images;
 
 	// the options should already be saved
+}
+
+function saveCategory() {
+	theCategory.name = $('#categoryNameModal').val();
+	theCategory.minimumOrder = $('#categoryMinimumModal').val();
 }

@@ -14,9 +14,13 @@ html(lang="en")
 		section
 			.container
 				.row
-					.btn-toolbar
-						button.btn.btn-primary(type="button")#addProduct Add Product
-						button.btn.btn-primary(type="button")#getSquareItems Get Items
+					.col-lg-12
+						h2 Products
+				.row
+					.col-lg-12
+						.btn-toolbar
+							button.btn.btn-primary(type="button")#addProduct Add Product
+							button.btn.btn-primary(type="button")#getSquareItems Get Items
 				.row
 					table.table.table-hover#productTable
 						thead
@@ -25,6 +29,17 @@ html(lang="en")
 								th Category
 								th Options
 						tbody#productTableBody
+				.row
+					.col-lg-12
+						h2 Categories
+						button.btn.btn-primary(type="button")#addCategory Add Category
+				.row
+					table.table.table-hover#categoryTable
+						thead
+							tr
+								th Name
+								th Minimum Order
+						tbody#categoryTableBody
 
 		#addItem.modal.fade(role="dialog")
 			.modal-dialog
@@ -34,6 +49,24 @@ html(lang="en")
 						h4 Add Item 
 					.modal-body
 						.list-group#itemList
+
+		#categoryModal.modal.fade(role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(data-dismiss="modal") &times;
+						h4 Add/Edit Category
+					.modal-body
+						.row.form-group
+							.col-lg-6
+								label Name
+								input.form-control(type="text")#categoryNameModal
+							.col-lg-6
+								label Minimum Order Quantity
+								input.form-control#categoryMinimumModal(type="number")
+					.modal-footer
+						button.btn.btn-danger(type="button")#deleteCategoryButton Delete
+						button.btn.btn-success(type="button")#saveCategoryButton Save
 
 		#editProductModal.modal.fade(role="dialog")
 			.modal-dialog.modal-lg

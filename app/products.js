@@ -1,6 +1,7 @@
 var SquareConnect = require('square-connect');
 var request = require('request');
 var Item = require('./model/item');
+var Category = require('./model/category');
 var Cart = require('./model/cart');
 var uuidv1 = require('uuid/v1');
 
@@ -47,6 +48,18 @@ function saveItem(item) {
 	});
 
 	return itemSaved;
+}
+
+function saveCategory(category) {
+	var findCat = Category.findOne({_id: category._id});
+	return findCat.then(function(dbCategory) {
+		if (dbCategory) {
+			return updateCategoryProperties(dbCategory, category);
+		} else {
+			var newCategory = new Category();
+			return updateCategoryProperties(newCategory, category);
+		}
+	})
 }
 
 function getItems() {
@@ -130,6 +143,28 @@ function saveCart(sessionID, order) {
 	});
 }
 
+function checkoutViaSquare(sessionID, isShipping, callback) {
+	var findCart = Cart.findOne({sessionID: sessionID});
+	findCart.then(function(cart) {
+		var checkout = {
+			redirect_uri: 'https://applefallscider.ca/thanks',
+			idempotency_key: uuidv1(),
+			ask_for_shipping_address: isShipping,
+			merchant_support_email: 'info@applefallscider.ca',
+			order: cart.order
+		};
+
+		var options = getOptions('locations/'+process.env.SQ_LOCATION+'/checkouts', 'POST');
+		options.body = checkout;
+		options.json = true;
+
+		request(options, function(err, response, body) {
+			console.log(body);
+			callback(body.checkout.checkout_page_url);
+		});
+	});
+}
+
 function updateItemProperties(dbItem, item) {
 	dbItem.name = item.name;
 	dbItem.categoryName = item.categoryName;
@@ -143,6 +178,18 @@ function updateItemProperties(dbItem, item) {
 	return dbItem.save();
 }
 
+function updateCategoryProperties(dbCategory, category) {
+	console.log(category);
+	dbCategory.name = category.name;
+	dbCategory.minimumOrder = parseInt(category.minimumOrder);
+	console.log(dbCategory);
+	return dbCategory.save();
+}
+
+function getCategories() {
+	return Category.find({});
+}
+
 module.exports = {
 	getStoreLocations: getStoreLocations,
 	getCatalog: getCatalog,
@@ -150,5 +197,8 @@ module.exports = {
 	getItems: getItems,
 	getCart: getCart,
 	addItemToCart: addItemToCart,
-	saveCart: saveCart
+	saveCart: saveCart,
+	checkoutViaSquare: checkoutViaSquare,
+	saveCategory: saveCategory,
+	getCategories: getCategories
 }

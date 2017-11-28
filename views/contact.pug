@@ -1,5 +1,5 @@
-mixin contactUsBlock(iconName, link, text)
-	.col-lg-2.col-md-2.col-sm-4.col-xs-6
+mixin contactUsBlock(iconName, link, text, classname)
+	.col-lg-2.col-md-2.col-sm-4.col-xs-6(class=classname)
 		.service-box.wow.fadeInDown
 			a.white(href=link, target="_blank")
 				i.far.fa-4x(class=iconName)
@@ -7,9 +7,9 @@ mixin contactUsBlock(iconName, link, text)
 			if block
 				block
 
-mixin socialBlock(iconName, link, text)
+mixin socialBlock(iconName, link, text, extrastyle)
 	.col-lg-2.col-md-2.col-sm-4.col-xs-6
-		.service-box.wow.fadeInDown
+		.service-box.wow.fadeInDown(style=extrastyle)
 			a.white(href=link, target="_blank")
 				i.fab.fa-4x(class=iconName)
 			h2=text
@@ -36,15 +36,17 @@ html(lang="en")
 						h2 Contact Us
 						hr.light
 				.row
+					+contactUsBlock('fa-star', "https://search.google.com/local/writereview?placeid=ChIJHy2_LnY81okRQTSRyif4i48", "Review")
 					+contactUsBlock('fa-envelope', 'mailto:info@applefallscider.ca', 'Email')
 						+link("mailto:info@applefallscider.ca", "info@applefallscider.ca")
-					+contactUsBlock('fa-address-card', "https://goo.gl/maps/DteZJVS2wTQ2", "Address")
-						+link("https://goo.gl/maps/DteZJVS2wTQ2", "1633 County Rd 3, Carrying Place")
 					+contactUsBlock('fa-phone', "tel:+1-613-242-8433", "Phone")
 						+link("tel:+1-613-242-8433", "613 242-8433")
-					+socialBlock('fa-facebook', "https://www.facebook.com/applefallscider", "Facebook")
+					+socialBlock('fa-facebook-f', "https://www.facebook.com/applefallscider", "Facebook", "padding-bottom:20px;")
 					+socialBlock('fa-twitter', "https://twitter.com/AppleFallsCider", "Twitter")
 					+socialBlock('fa-instagram', "https://www.instagram.com/applefallscider/", "Instagram")
+				.row
+					+contactUsBlock('fa-address-card', "https://goo.gl/maps/DteZJVS2wTQ2", "Address", "col-lg-offset-5")
+						+link("https://goo.gl/maps/DteZJVS2wTQ2", "1633 County Rd 3, Carrying Place")
 		
 		.map#map-canvas
 
