@@ -150,7 +150,43 @@ mixin shoppingCart
 						.col-lg-3
 							h4#subtotalModal $0.00
 				.modal-footer
-					button.btn.btn-success(type="button")#checkoutButton Checkout
+					.checkbox(style="float: left;")
+						label
+							input(type="checkbox")#legalAge
+							| I am over the age of 19.
+					.tooltip-wrapper(data-toggle="tooltip", title="No items in cart")#cartTooltip
+						button.btn.btn-success(type="button")#checkoutButton Checkout
+	#shippingModal.modal.fade(role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss="modal", type="button") &times;
+					h4 Pickup or Shipping
+				.modal-body
+					.btn-toolbar
+						button.btn.btn-default
+							| Pickup my order in store
+							i.far.fa-shopping-bag
+				.modal-footer
+					button.btn.success#continueCheckout Continue
+
+mixin offerPopup
+	#offerModal.modal.fade(role="dialog")
+		.modal-dialog
+			.modal-content
+				.modal-body
+					img(src="/img/events/christmas-banner.jpg").img-responsive.popup-banner
+					#popup-content
+						.row
+							.col-lg-12.text-center
+								p We've got a special Christmas offer for you! Sign up for our mailing list right now and receive 15% off Apple Falls Cider products until Christmas.
+						form.row.form-group
+							.col-lg-12
+								label Email
+								input.form-control(type="email", placeholder="Please enter your email.", required)#offerEmail
+				.modal-footer
+					button.btn.btn-success#offerSubscribeButton Subscribe
+					button.btn.btn-danger(data-dismiss="modal") Close
 
 mixin squarePaymentForm
 	#sq-ccbox

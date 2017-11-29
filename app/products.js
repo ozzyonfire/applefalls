@@ -182,7 +182,7 @@ function updateCategoryProperties(dbCategory, category) {
 	console.log(category);
 	dbCategory.name = category.name;
 	dbCategory.minimumOrder = parseInt(category.minimumOrder);
-	console.log(dbCategory);
+	dbCategory.legalAgeRequired = category.legalAgeRequired;
 	return dbCategory.save();
 }
 

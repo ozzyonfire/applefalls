@@ -177,7 +177,8 @@ function getDefaultItem() {
 function getDefaultCategory() {
 	var category = {
 		name: '',
-		minimumOrder: 0
+		minimumOrder: 0,
+		legalAgeRequired: false
 	};
 
 	return category;
@@ -228,6 +229,7 @@ function populateCategoryModal(category) {
 	theCategory = category;
 	$('#categoryNameModal').val(category.name);
 	$('#categoryMinimumModal').val(category.minimumOrder);
+	$('#legalAgeRequired').prop('checked', category.legalAgeRequired);
 }
 
 function populateProductModal(item) {
@@ -301,4 +303,5 @@ function saveItem() {
 function saveCategory() {
 	theCategory.name = $('#categoryNameModal').val();
 	theCategory.minimumOrder = $('#categoryMinimumModal').val();
+	theCategory.legalAgeRequired = $('#legalAgeRequired').is(':checked');
 }

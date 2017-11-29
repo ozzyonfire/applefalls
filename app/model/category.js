@@ -6,7 +6,8 @@ var categorySchema = new mongoose.Schema({
 		type: String,
 		index: true
 	},
-	minimumOrder: Number
+	minimumOrder: Number,
+	legalAgeRequired: Boolean
 });
 
 module.exports = mongoose.model('Category', categorySchema);

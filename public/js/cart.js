@@ -5,6 +5,8 @@ $(document).ready(function() {
 	socket.emit('getCart');
 	socket.emit('getCategories');
 
+	$('#cartTooltip').tooltip();
+
 	$('#shoppingCartIcon').click(function(e) {
 		e.preventDefault();
 		$('#shoppingCartModal').modal();
@@ -16,7 +18,16 @@ $(document).ready(function() {
 	});
 
 	$('#checkoutButton').click(function() {
+		$('#shoppingCartModal').modal('hide');
+		$('#shippingModal').modal();
+	});
+
+	$('#continueCheckout').click(() => {
 		socket.emit('checkout', true);
+	});
+
+	$('#legalAge').change(() => {
+		validateCheckout(theCart.line_items);
 	});
 
 	$('#checkoutButton').addClass('disabled');
@@ -60,7 +71,7 @@ function populateShoppingCartModal(cart) {
 
 			nameCol.text(lineItem.name);
 			optionCol.text(lineItem.variation_name);
-			var quantityInput = $('<input type="number" class="form-control">');
+			var quantityInput = $('<input type="number" class="form-control" min="1">');
 			quantityInput.val(lineItem.quantity);
 			var base_price = lineItem.base_price_money.amount / 100;
 			var subtotal = base_price * lineItem.quantity;
@@ -111,30 +122,46 @@ function calculateCartSubtotal(cart) {
 }
 
 function validateCheckout(items) {
+	var message = 'Looks good!';
+	var legalAgeRequired = false;
 	theCategories.forEach((category) => {
 		category.cartTotal = 0;
+		category.containsItems = false;
+		if (category.legalAgeRequired == true) {
+			legalAgeRequired = true;
+		}
 	});
 
 	items.forEach((item) => {
-		theCategories.forEach((category) =>{
+		theCategories.forEach((category) => {
 			if (item.categoryName == category.name) {
 				category.cartTotal += parseInt(item.quantity);
+				category.containsItems = true;
 			}
 		});
 	});
 
 	var validCart = true;
-	theCategories.forEach((category) => {
-		if (category.minimumOrder > category.cartTotal && category.cartTotal > 0) {
-			validCart = false;
-			console.log('Minimum order not met');
-			console.log(category.name);
-		}
-	});
+	if (items.length == 0) {
+		validCart = false;
+		message = 'No items in cart.'
+	} else {
+		theCategories.forEach((category) => {
+			if (category.minimumOrder > category.cartTotal && category.containsItems) {
+				validCart = false;
+				message = 'Minimum order quantity not met.';
+			}
+		});
+	}
 
 	console.log(theCategories);
-	console.log(validCart);
 
+	if (!$('#legalAge').is(':checked') && legalAgeRequired) {
+		validCart = false;
+		message = 'You must be of legal age to purchase an item in your cart.';
+	}
+
+	$('#cartTooltip').attr('data-original-title', message).tooltip('fixTitle');
 	if (validCart == true) {
 		$('#checkoutButton').removeClass('disabled');
 		$('#checkoutButton').removeAttr('disabled');

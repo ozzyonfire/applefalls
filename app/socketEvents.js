@@ -1,5 +1,6 @@
 var Code = require('./model/code');
 var products = require('./products');
+var mailchimp = require('./mailchimp');
 var fs = require('fs');
 var path = require('path');
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -140,6 +141,10 @@ module.exports = function(io) {
 			getCats.then(function(cats) {
 				socket.emit('getCategoriesFinished', cats);
 			});
+		});
+
+		socket.on('subscribeToOffer', function(email) {
+			mailchimp.subscribe(email);
 		});
 	});
 }

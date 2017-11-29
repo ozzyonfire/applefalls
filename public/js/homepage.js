@@ -90,6 +90,34 @@ $(document).ready(function() {
         $('#easterEggModal').modal('hide');
         $('#finalModal').modal();
     });
+
+    if (getCookie('christmas-offer') != 'subscribed') {
+        $('#offerModal').modal();
+    }
+
+    $('#offerSubscribeButton').click(() => {
+        var emailInput = document.getElementById('offerEmail');
+        var email = $('#offerEmail').val();
+        if (emailInput.checkValidity()) {
+            console.log('valid');
+            $('#offerSubscribeButton').attr('disabled', 'disabled');
+            $('#offerSubscribeButton').addClass('disabled');
+            socket.emit('subscribeToOffer', $('#offerEmail').val());
+            $('#offerSubscribeButton').button('toggle');
+            setCookie('christmas-offer', 'subscribed', 30);
+            $('#popup-content').empty();
+            var row = $('<div class="row"></div>');
+            var col = $('<div class="col-lg-12 text-center"></div>');
+            col.append($('<p>Thank you for subscribing. You will receive an ' +
+                'email with your exclusive offer code.</p>'));
+            row.append(col);
+            $('#popup-content').append(row);
+        } else {
+            console.log('not valid');
+            $('#offerEmail').prop('style', 'border-color:red;');
+            $('#offerEmail').focus();
+        }
+    });
 });
 
 function sendValidateEvent(inputName) {

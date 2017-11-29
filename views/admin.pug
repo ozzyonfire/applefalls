@@ -64,6 +64,11 @@ html(lang="en")
 							.col-lg-6
 								label Minimum Order Quantity
 								input.form-control#categoryMinimumModal(type="number")
+						.row.form-group
+							.col-lg-12.checkbox
+								label
+									input(type="checkbox")#legalAgeRequired
+									| You must be over 19 years old to purchase this category.
 					.modal-footer
 						button.btn.btn-danger(type="button")#deleteCategoryButton Delete
 						button.btn.btn-success(type="button")#saveCategoryButton Save
