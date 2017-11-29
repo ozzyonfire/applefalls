@@ -163,12 +163,25 @@ mixin shoppingCart
 					button.close(data-dismiss="modal", type="button") &times;
 					h4 Pickup or Shipping
 				.modal-body
-					.btn-toolbar
-						button.btn.btn-default
-							| Pickup my order in store
-							i.far.fa-shopping-bag
+					.row
+						.btn-group(data-toggle="buttons").col-lg-12
+							label.btn.btn-default.col-lg-6
+								input(type="radio", name="shippingRadio", value="pickup")#cartPickup
+								| Pick up my order in store
+								.row(style="padding: 20px;")
+									i.fal.fa-shopping-bag.fa-4x
+								| No extra charge
+							label.btn.btn-default.col-lg-6.active
+								input(type="radio", name="shippingRadio", value="shipping", checked)#cartShipping
+								| Deliver my order
+								.row(style="padding: 20px;")
+									i.fal.fa-cube.fa-4x
+								| $7 Shipping
+					.row.pad-top-20
+						.col-lg-12
+							p#shippingMessage We ship to anywhere in Canada. You can expect your order within 7 business days. For more information, read our shipping policy.
 				.modal-footer
-					button.btn.success#continueCheckout Continue
+					button.btn.success#continueCheckout(data-loading-text="Sending...") Continue
 
 mixin offerPopup
 	#offerModal.modal.fade(role="dialog")
@@ -222,3 +235,7 @@ mixin squarePaymentForm
 		#sq-masterpass-label.wallet-not-enabled Masterpass not enabled
 		button#sq-masterpass.button-masterpass
 
+mixin chevron
+	.text-center.chevron-wrapper.wow.bounce(data-wow-delay="0.5s")
+		a(href="#top").white.page-scroll
+			i.fal.fa-chevron-down.fa-6x

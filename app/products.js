@@ -146,6 +146,28 @@ function saveCart(sessionID, order) {
 function checkoutViaSquare(sessionID, isShipping, callback) {
 	var findCart = Cart.findOne({sessionID: sessionID});
 	findCart.then(function(cart) {
+		if (isShipping) {
+			cart.order.line_items.push({
+				name: 'Shipping',
+				quantity: '1',
+				base_price_money: {
+					amount: 700,
+					currency: 'CAD'
+				}
+			});
+		} else {
+			cart.order.line_items.push({
+				name: 'In-store pickup',
+				quantity: '1',
+				base_price_money: {
+					amount: 0,
+					currency: 'CAD'
+				}
+			});
+		}
+		cart.order.line_items.forEach((lineItem) => {
+			lineItem.note = '';
+		});
 		var checkout = {
 			redirect_uri: 'https://applefallscider.ca/thanks',
 			idempotency_key: uuidv1(),

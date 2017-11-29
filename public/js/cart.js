@@ -5,6 +5,9 @@ $(document).ready(function() {
 	socket.emit('getCart');
 	socket.emit('getCategories');
 
+	var checkoutButton = $('#checkoutButton');
+	var continueCheckout = $('#continueCheckout');
+
 	$('#cartTooltip').tooltip();
 
 	$('#shoppingCartIcon').click(function(e) {
@@ -17,26 +20,38 @@ $(document).ready(function() {
 		socket.emit('getCart');
 	});
 
-	$('#checkoutButton').click(function() {
+	checkoutButton.click(function() {
 		$('#shoppingCartModal').modal('hide');
 		$('#shippingModal').modal();
 	});
 
-	$('#continueCheckout').click(() => {
-		socket.emit('checkout', true);
+	continueCheckout.click(() => {
+		continueCheckout.button('loading');
+		var isShipping = true;
+		if ($('input[name="shippingRadio"]:checked').val() == 'pickup') {
+			isShipping = false;
+		}
+		socket.emit('checkout', isShipping);
 	});
 
 	$('#legalAge').change(() => {
 		validateCheckout(theCart.line_items);
 	});
 
-	$('#checkoutButton').addClass('disabled');
-	$('#checkoutButton').attr('disabled', 'disabled');
+	$('input[name="shippingRadio"]').change((e) => {
+		var val = e.target.value;
+		if (val == 'pickup') {
+			$('#shippingMessage').text('You can pick up your order at our bottle shop during regular business hours.');
+		} else if (val == 'shipping') {
+			$('#shippingMessage').text('We ship to anywhere in Canada. You can expect your order within 7 business days. For more information, read our shipping policy.');
+		}
+	});
+
+	checkoutButton.addClass('disabled');
+	checkoutButton.attr('disabled', 'disabled');
 });
 
 socket.on('getCartFinished', function(cart) {
-	console.log(cart);
-	theCart = cart;
 	updateShoppingCart(cart);
 });
 
@@ -46,6 +61,7 @@ socket.on('getCategoriesFinished', function(categories) {
 });
 
 socket.on('checkoutURL', function(url) {
+	$('#continueCheckout').button('reset');
 	window.location.href = url;
 });
 
@@ -57,8 +73,8 @@ function updateShoppingCart(cart) {
 }
 
 function populateShoppingCartModal(cart) {
+	theCart = cart;
 	$('#shoppingCartModalBody').empty();
-
 	if (cart.line_items.length > 0) {
 		$('#shoppingCartModalBody').append(getLineRow());
 		cart.line_items.forEach(function(lineItem) {
