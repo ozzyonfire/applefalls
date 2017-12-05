@@ -3,6 +3,7 @@ include mixins
 html(lang="en")
 	include includes/head
 	title AFC - News and Events
+	script(type="text/javascript", src="js/events.js")
 	
 	body#page-top
 		+navbar("events")
@@ -13,15 +14,54 @@ html(lang="en")
 					hr
 					p Find out what's happening at Apple Falls Cider Co. and Campbell's Orchards.
 			+chevron
-		section.bg-primary.text-center#top
+		section.bg-primary#top
 			.container
 				.row
-					.col-lg-6
-						h2.section-heading JERKebago and a Halloween Harvest Feast!
-						p JERKebago will be at Apple Falls Cider Co. this Saturday (October 28th) celebrating Halloween from 11am to 6pm taking over the patio and serving up some delicious jerk chicken and other good eats! Apple Falls Cider will have two ciders on tap to enjoy with your meal. This all will take place at Campbell's Orchards!
-						p There will be fun halloween activities for the kids. Come dressed up in your Halloween gear for a treat!
-						a.btn.btn-success(href="https://www.facebook.com/events/137626603536402", target="_blank") Find out more on Facebook
-					.col-lg-6
-						img.img-responsive(src="./img/events/jerkebago.jpg")
+					.col-lg-12
+						h1.text-center Book a Tour
+					.col-lg-6.col-lg-offset-3
+						p Enjoy a tour of Apple Falls Cider Co. and The Campbell's Orchards. Fill out the form below to request a tour date and time. With your tour you will enjoy:
+						ul
+							li Tastings of all our current ciders
+							li Detailed explanation of the cider making process including picking, pressing, fermenting, aging and drinking! 
+							li Exclusive first-taste of all our in-progress ciders
+							li Walk-through tour of the cidery (inside and out)
+						p The tour is $5 per person and lasts approximately 30 minutes.
+				.row
+					form#tourForm.col-lg-6
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
+								label(for="nameInput") Name
+								#nameHint
+								input.form-control#nameInput(type="text", name="name")
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
+								label(for="emailInput") Email
+								#emailHint
+								input.form-control#emailInput(type="email", name="email")
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
+								label(for="phoneInput") Phone
+								#phoneHint
+								input.form-control#phoneInput(type="tel", name="phone")
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
+								label(for="peopleInput") Number of people
+								input.form-control#peopleInput(type="number", name="people", value="1", min="1", step="1")
+						.row.form-group
+							.col-lg-8.col-lg-offset-2(data-toggle="tooltip", data-placement="left", title="We only tour on weekends")
+								label(for="datePicker") Preferred Date
+								input.form-control#datePicker(type="date", name="date")
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
+								label(for="timePicker") Preferred Time
+								select.form-control#timePicker
+									option(value="Morning") Morning
+									option(value="Afternoon") Afternoon
+						.row.form-group
+							.col-lg-8.text-center.col-lg-offset-2
+								button.btn.btn-default(type="button")#submitTourButton Submit
+					.col-lg-6(style="padding-top:40px;")
+						img.img-rounded.img-responsive(src="/img/events/jumping-right.png")
 
 		+footer

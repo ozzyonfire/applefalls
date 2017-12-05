@@ -4,6 +4,7 @@ var mailchimp = require('./mailchimp');
 var fs = require('fs');
 var path = require('path');
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+var request = require('request');
 
 module.exports = function(io) {
 	io.on('connection', function(socket) {
@@ -145,6 +146,56 @@ module.exports = function(io) {
 
 		socket.on('subscribeToOffer', function(email) {
 			mailchimp.subscribe(email);
+		});
+
+		socket.on('tourRequest', (tour) => {
+			var fallback = tour.name + ' is requesting a tour.';
+			var text = 'New tour request!';
+			var fields = [{
+				title: 'Name',
+				value: tour.name,
+				short: true
+			}, {
+				title: 'Date',
+				value: tour.date,
+				short: true
+			}, {
+				title: 'Email',
+				value: tour.email,
+				short: true
+			}, {
+				title: 'Phone',
+				value: tour.phone,
+				short: true
+			}, {
+				title: 'Attendees',
+				value: tour.attendees,
+				short: true
+			}, {
+				title: 'Time',
+				value: tour.time,
+				short: true
+			}];
+
+			console.log('Received tour request');
+			console.log(tour);
+
+			var options = {
+				method: 'POST',
+				url: 'https://hooks.slack.com/services/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',
+				json: true,
+				body: {
+					attachments: [{
+						fallback: fallback,
+						text: text,
+						fields: fields
+					}]
+				}
+			};
+
+			request(options, function(err, response, body) {
+				console.log(body);
+			});
 		});
 	});
 }
