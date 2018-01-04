@@ -91,9 +91,14 @@ $(document).ready(function() {
         $('#finalModal').modal();
     });
 
-    if (getCookie('christmas-offer') != 'subscribed') {
+    var offerCookie = getCookie('offer-cookie'); 
+    if (offerCookie != 'subscribed' && offerCookie !="cancelled") {
         $('#offerModal').modal();
     }
+
+    $('#closeOfferButton').click(() => {
+        setCookie('offer-cookie', 'cancelled', 1);
+    });
 
     $('#offerSubscribeButton').click(() => {
         var emailInput = document.getElementById('offerEmail');
@@ -104,7 +109,7 @@ $(document).ready(function() {
             $('#offerSubscribeButton').addClass('disabled');
             socket.emit('subscribeToOffer', $('#offerEmail').val());
             $('#offerSubscribeButton').button('toggle');
-            setCookie('christmas-offer', 'subscribed', 30);
+            setCookie('offer-cookie', 'subscribed', 30);
             $('#popup-content').empty();
             var row = $('<div class="row"></div>');
             var col = $('<div class="col-lg-12 text-center"></div>');

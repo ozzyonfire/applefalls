@@ -1,7 +1,6 @@
-mixin hourTableRow(day, tastingTime, shopTime)
+mixin hourTableRow(day, tastingTime)
 	td=day
 	td=tastingTime
-	td=shopTime
 
 doctype html
 include mixins
@@ -38,7 +37,7 @@ html(lang="en")
 			button#roseButton3.roseButton.invisible-button Rose 3
 			button#roseButton4.roseButton.invisible-button.hidden Rose 4
 			+chevron
-		aside.bg-primary#top
+		aside.bg-dark#top
 			.container
 				.row
 					.col-lg-4.col-md-4.col-sm-4
@@ -47,26 +46,29 @@ html(lang="en")
 								tr
 									th Day
 									th Bottle Shop
-									th Tasting Room
 							tbody
 								tr
-									+hourTableRow('Monday', '9 am - 5:30 pm', 'Closed')
+									+hourTableRow('Monday', 'Closed')
 								tr
-									+hourTableRow('Tuesday', '9 am - 5:30 pm', 'Closed')
+									+hourTableRow('Tuesday', 'Closed')
 								tr
-									+hourTableRow('Wednesday', '9 am - 5:30 pm', 'Closed')
+									+hourTableRow('Wednesday', 'Closed')
 								tr
-									+hourTableRow('Thursday', '9 am - 5:30 pm', 'Closed')
+									+hourTableRow('Thursday', '9 am - 5 pm')
 								tr
-									+hourTableRow('Friday', '9 am - 5:30 pm', 'Closed')
+									+hourTableRow('Friday', '9 am - 5 pm')
 								tr
-									+hourTableRow('Saturday', '9 am - 5:30 pm', '11:30 am - 4:30 pm')
+									+hourTableRow('Saturday', '9 am - 5 pm')
 								tr
-									+hourTableRow('Sunday', '10 am - 5 pm', '11:30 am - 4:30 pm')
+									+hourTableRow('Sunday', '10 am - 5 pm')
+						small Private tastings are available by appointment for the winter season.
 					.col-lg-4.col-md-4.col-sm-4.text-center.lead
-						h2 Hours
+						.service-box.wow.tada(data-wow-delay="0.2s")
+							i.far.fa-2x.fa-shopping-cart.text-light
+						h2 Online Store
 						hr.light
-						p Our bottle shop is located at Campbell's Orchards in Prince Edward County and is open 7 days a week. Visit us for a drink on our licensed patio or stop by for a tasting on the weekends from 11:30 am to 4:30 pm.
+						p Order our cider online and have it shipped directly to your door!
+						a(href="http://store.applefallscider.ca/").btn.btn-primary Shop now
 					.col-lg-4.col-md-4.col-sm-4#vidContainer
 						video#boomerang.boomerang(playsinline, autoplay, muted, loop, preload, poster="/img/parallax/grass.png").img-responsive.img-rounded.square-img
 							source(src="/img/vids/boomerang.mov", type="video/mp4")
@@ -87,25 +89,25 @@ html(lang="en")
 							a(href="/our-cider").btn.btn-primary Read more
 					.col.lg-3.col-md-3.col-sm-3.text-center
 						.service-box.wow.bounceInDown(data-wow-delay="0.1s")
-							i.far.fa-4x.fa-newspaper.text-primary
-							h3 Events and Tours
-							p.text-muted Find out what's happening at Apple Falls and Campbell's Orchards.
+							i.far.fa-4x.fa-camera-retro.text-primary
+							h3 Book a Tour
+							p.text-muted Check out the farm and the cider house! Learn about the process of cider making! Oh and drink some cider, too. 
 							hr.primary
-							a(href="/events").btn.btn-primary Read more
+							a(href="/events").btn.btn-primary Book now
 					.col.lg-3.col-md-3.col-sm-3.text-center
 						.service-box.wow.bounceInUp(data-wow-delay="0.2s")
 							i.far.fa-4x.fa-pencil-alt.text-primary
 							h3 Our Story
-							p.text-muted Apple Falls Cider creates ciders that feature the true flavours of Prince Edward County.
+							p.text-muted Stay up to date with what's happening at Apple Falls. You may even learn something along the way.
 							hr.primary
-							a(href="/our-story").btn.btn-primary Read more
+							a(href="http://blog.applefallscider.ca").btn.btn-primary Read the blog
 					.col.lg-3.col-md-3.col-sm-3.text-center
 						.service-box.wow.bounceInRight(data-wow-delay="0.3s")
-							i.far.fa-4x.fa-shopping-cart.text-primary
-							h3 Store
-							p.text-muted Order our cider online and have it shipped directly to your door!
+							i.far.fa-4x.fa-newspaper.text-primary
+							h3 In the News
+							p.text-muted Find out what the community is saying about Apple Falls Cider Co. 
 							hr.primary
-							a(href="http://store.applefallscider.ca/").btn.btn-primary Shop now
+							a(href="/news").btn.btn-primary Read More
 		section.no-padding
 			.container-fluid
 				.row.no-gutter

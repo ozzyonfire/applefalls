@@ -7,27 +7,7 @@ html(lang="en")
 	
 	body#page-top
 		+navbar("events")
-		header.our-orchard#page-scroll
-			.header-content
-				.header-content-inner
-					h1 News &amp; Events
-					hr
-					p Find out what's happening at Apple Falls Cider Co. and Campbell's Orchards.
-			+chevron
-		section.bg-primary#top
-			.container
-				.row
-					.col-lg-12
-						h1 Build a New Life
-				.row
-					.col-lg-8
-						p Check out the latest article on Apple Falls Cider Co!
-						blockquote
-							p Amelia Campbell grew up on an apple farm. Campbell’s Orchards near Carrying Place has been a favourite family destination for 35 years – now  Amelia and her partner Matt Oskamp are adding a delicious new attraction to the family farm. Amelia tells us about creating Apple Falls Cider... 
-							a.btn-default.btn(type="button", href="http://buildanewlife.ca/apple-falls-cider/", target="_blank") Read on
-					.col-lg-4
-						img.img-responsive(src="/img/events/county-logo.png")
-		aside
+		aside.bg-dark
 			.container
 				.row
 					.col-lg-12
@@ -40,6 +20,8 @@ html(lang="en")
 							li Exclusive first-taste of all our in-progress ciders
 							li Walk-through tour of the cidery (inside and out)
 						p The tour is $5 per person and lasts approximately 30 minutes.
+		aside
+			.container
 				.row
 					form#tourForm.col-lg-6
 						.row.form-group
@@ -73,7 +55,7 @@ html(lang="en")
 									option(value="Afternoon") Afternoon
 						.row.form-group
 							.col-lg-8.text-center.col-lg-offset-2
-								button.btn.btn-default(type="button")#submitTourButton Submit
+								button.btn.btn-primary(type="button")#submitTourButton Submit
 					.col-lg-6(style="padding-top:40px;")
 						img.img-rounded.img-responsive(src="/img/events/jumping-right.png")
 

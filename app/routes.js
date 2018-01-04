@@ -37,6 +37,14 @@ module.exports = function(app) {
 		res.render('calculator');
 	});
 
+	app.get('/news', function(req, res) {
+		res.render('news');
+	});
+
+	app.get('/find-us', function(req, res) {
+		res.render('find-us');
+	});
+
 	app.get('/store', function(req, res) {
 		var findCiders = Item.find({categoryName: 'Cider'});
 		findCiders.then(function(ciders) {

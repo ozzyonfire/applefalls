@@ -1,0 +1,49 @@
+mixin tableRow(name, imgsrc, ciders, address, link)
+	td.text-center
+		img.img-responsive.img-rounded(src=imgsrc, width="150px")
+	td=name
+	td=ciders
+	td
+		a.alt(href=link, target="_blank")=address
+
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title AFC - Find Us
+	
+	body#page-top
+		+navbar("licensee")
+		header.find-us#page-scroll
+			.header-content
+				.header-content-inner
+					h1 Where To Find Us
+			+chevron
+		section.bg-primary#top
+			.container
+				.row
+					.col-lg-12
+						table.table
+							thead
+								tr
+									td 
+									td Name
+									td Ciders
+									td Location
+							tbody
+								tr
+									+tableRow("The Alibi", "https://pbs.twimg.com/profile_images/446054591776309248/chfwSg5t_400x400.jpeg", "Premiere Act II & Beekeeper", "293 Princess St., Kingston, Ontario, K7L 1B5","https://twitter.com/AlibiKingston")
+								tr
+									+tableRow("The Boathouse Seafood Restaurant", "http://boathouselure.ca/wp-content/uploads/2017/01/cropped-logoBH-180x180.jpg", "Beekeeper", "32 South Front St., Belleville, Ontario, K8N 2Y3","http://boathouselure.ca")
+								tr
+									+tableRow("The Brake Room", "/img/licensees/brake-room.png", "Beekeeper & Hopped", "34 Dundas St. East, Belleville, Ontario, K8N 1B5","http://thebrakeroom.com")
+								tr
+									+tableRow("Crafty Coyote", "https://pbs.twimg.com/profile_images/715095360176267264/1Vj1Uw5t_400x400.jpg", "Premiere Act II", "511 Bloor Street West, Toronto, Ontario, M5S 1Y4","http://craftycoyote.ca/")
+								tr
+									+tableRow("Gourmet Diem", "http://www.gourmet-diem.com/system/business_logos/24547/original/77663ed6e52818c5fe94.jpg?1490818281", "Premiere Act II, Beekeeper, Hopped, & Crush", "213 Front St., Belleville, Ontario, K8N 2Z4","http://www.gourmet-diem.com/")
+								tr
+									+tableRow("The Meyers Pier", "/img/licensees/pier.jpg", "Premiere", "1 South Front St., Belleville, Ontario","https://www.facebook.com/pierpatiobbq/")
+								tr
+									+tableRow("Tomasso's Italian Grille", "https://www.tomassos.ca/wp-content/uploads/2012/06/logo_tomassos.png", "Premiere Act II", "35 Front St., Trenton, Ontario, K8V 4N3","https://www.tomassos.ca")
+
+		+footer

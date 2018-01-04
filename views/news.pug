@@ -1,0 +1,30 @@
+doctype html
+include mixins
+html(lang="en")
+	include includes/head
+	title AFC - News
+	
+	body#page-top
+		+navbar("news")
+		header.our-orchard#page-scroll
+			.header-content
+				.header-content-inner
+					h1 News
+					hr
+					p Find out what's happening at Apple Falls Cider Co. and Campbell's Orchards.
+			+chevron
+		section.bg-primary#top
+			.container
+				.row
+					.col-lg-12
+						h1 Build a New Life
+				.row
+					.col-lg-8
+						p Check out the latest article on Apple Falls Cider Co!
+						blockquote
+							p Amelia Campbell grew up on an apple farm. Campbell’s Orchards near Carrying Place has been a favourite family destination for 35 years – now  Amelia and her partner Matt Oskamp are adding a delicious new attraction to the family farm. Amelia tells us about creating Apple Falls Cider... 
+							a.btn-default.btn(type="button", href="http://buildanewlife.ca/apple-falls-cider/", target="_blank") Read on
+					.col-lg-4
+						img.img-responsive(src="/img/events/county-logo.png")
+
+		+footer

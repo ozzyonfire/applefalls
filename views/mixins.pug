@@ -13,6 +13,9 @@ mixin navbar(active)
 					a.navbar-brand(href="/") Apple Falls Cider Co.
 			.collapse.navbar-collapse#mainNavCollapse
 				ul.nav.navbar-nav.navbar-right
+					li
+						div
+							a.btn.btn-success.navbar-btn(href="/events") Book a Tour!
 					if active == "home"
 						+activeNav("Home")
 					else
@@ -24,14 +27,18 @@ mixin navbar(active)
 								+activeNav("Our Cider")
 							else
 								+inactiveNav("Our Cider", "/our-cider")
-							if active == "events"
-								+activeNav("News & Events")
-							else
-								+inactiveNav("News & Events", "/events")
 							if active == "story"
 								+activeNav("Our Story")
 							else
 								+inactiveNav("Our Story", "/our-story")
+							if active == "news"
+								+activeNav("In the News")
+							else
+								+inactiveNav("In the News", "/news")
+							if active == "licensee"
+								+activeNav("Where to Find Us")
+							else
+								+inactiveNav("Where to Find Us", "/find-us")
 					if active == "blog"
 						+activeNav("Blog")
 					else
@@ -192,14 +199,14 @@ mixin offerPopup
 					#popup-content
 						.row
 							.col-lg-12.text-center
-								p We've got a special Christmas offer for you! Sign up for our mailing list right now and receive 15% off Apple Falls Cider products until Christmas.
+								p We've got a special offer for you! Sign up for our mailing list right now and receive 10% off Apple Falls Cider merchandise and apparel.
 						form.row.form-group
 							.col-lg-12
 								label Email
 								input.form-control(type="email", placeholder="Please enter your email.", required)#offerEmail
 				.modal-footer
 					button.btn.btn-success#offerSubscribeButton Subscribe
-					button.btn.btn-danger(data-dismiss="modal") Close
+					button.btn.btn-danger#closeOfferButton(data-dismiss="modal") Close
 
 mixin squarePaymentForm
 	#sq-ccbox
