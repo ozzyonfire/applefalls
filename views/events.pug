@@ -26,6 +26,12 @@ html(lang="en")
 					form#tourForm.col-lg-6
 						.row.form-group
 							.col-lg-8.col-lg-offset-2
+								label(for="tourType") Type
+								select.form-control#tourType
+									option(value="Tasting") Tasting
+									option(value="Tour") Tour
+						.row.form-group
+							.col-lg-8.col-lg-offset-2
 								label(for="nameInput") Name
 								#nameHint
 								input.form-control#nameInput(type="text", name="name")
@@ -44,7 +50,7 @@ html(lang="en")
 								label(for="peopleInput") Number of people
 								input.form-control#peopleInput(type="number", name="people", value="1", min="1", step="1")
 						.row.form-group
-							.col-lg-8.col-lg-offset-2(data-toggle="tooltip", data-placement="left", title="We only tour on weekends")
+							.col-lg-8.col-lg-offset-2(data-toggle="tooltip", data-placement="left", title="We only tour and taste on weekends")
 								label(for="datePicker") Preferred Date
 								input.form-control#datePicker(type="date", name="date")
 						.row.form-group

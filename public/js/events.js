@@ -22,7 +22,7 @@ $(document).ready(() => {
 
 			// display message
 			$('#tourForm').empty();
-			$('#tourForm').append($('<p class="text-center" style="padding-top:40px;">Thanks for your request! We\'ll get back to you ASAP to coordinate the tour.</p>'));
+			$('#tourForm').append($('<p class="text-center" style="padding-top:40px;">Thanks for your request! We\'ll get back to you ASAP to coordinate the tour or tasting.</p>'));
 		}
 	});
 
