@@ -6,6 +6,7 @@ $(document).ready(() => {
 		// validate form
 		var valid = true;
 		var tourRequest = {
+			type: $('#tourType').val(),
 			name: $('#nameInput').val(),
 			email: $('#emailInput').val(),
 			phone: $('#phoneInput').val(),

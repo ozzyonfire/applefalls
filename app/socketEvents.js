@@ -150,8 +150,12 @@ module.exports = function(io) {
 
 		socket.on('tourRequest', (tour) => {
 			var fallback = tour.name + ' is requesting a tour.';
-			var text = 'New tour request!';
+			var text = 'New tour or tasting request!';
 			var fields = [{
+				title: 'Type',
+				value: tour.type,
+				short: true
+			}, {
 				title: 'Name',
 				value: tour.name,
 				short: true
