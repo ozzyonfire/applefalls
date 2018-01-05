@@ -25,6 +25,9 @@ hr {
 hr.light {
   border-color: white;
 }
+hr.dark {
+  border-color: #600300;
+}
 a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
@@ -419,6 +422,9 @@ video#af-vid {
 .text-primary {
   color: #B90600;
 }
+.text-dark {
+  color: #600300;
+}
 .no-gutter > [class*='col-'] {
   padding-right: 0;
   padding-left: 0;
@@ -517,6 +523,54 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-primary .badge {
   color: #B90600;
+  background-color: white;
+}
+.btn-dark {
+  color: white;
+  background-color: #600300;
+  border-color: #600300;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark.focus,
+.btn-dark:active,
+.btn-dark.active,
+.open > .dropdown-toggle.btn-dark {
+  color: white;
+  background-color: #470200;
+  border-color: #3c0200;
+}
+.btn-dark:active,
+.btn-dark.active,
+.open > .dropdown-toggle.btn-dark {
+  background-image: none;
+}
+.btn-dark.disabled,
+.btn-dark[disabled],
+fieldset[disabled] .btn-dark,
+.btn-dark.disabled:hover,
+.btn-dark[disabled]:hover,
+fieldset[disabled] .btn-dark:hover,
+.btn-dark.disabled:focus,
+.btn-dark[disabled]:focus,
+fieldset[disabled] .btn-dark:focus,
+.btn-dark.disabled.focus,
+.btn-dark[disabled].focus,
+fieldset[disabled] .btn-dark.focus,
+.btn-dark.disabled:active,
+.btn-dark[disabled]:active,
+fieldset[disabled] .btn-dark:active,
+.btn-dark.disabled.active,
+.btn-dark[disabled].active,
+fieldset[disabled] .btn-dark.active {
+  background-color: #600300;
+  border-color: #600300;
+}
+.btn-dark .badge {
+  color: #600300;
   background-color: white;
 }
 .btn {

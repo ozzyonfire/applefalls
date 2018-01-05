@@ -21,6 +21,7 @@
     "express": "^4.15.4",
     "express-session": "^1.15.6",
     "heroku-ssl-redirect": "0.0.4",
+    "less": "^2.7.3",
     "messenger-bot": "^2.4.0",
     "mongoose": "^4.11.12",
     "pug": "^2.0.0-rc.3",

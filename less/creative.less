@@ -28,6 +28,10 @@ hr.light {
     border-color: white;
 }
 
+hr.dark {
+    border-color: @theme-dark;
+}
+
 a {
     .transition-all;
     color: @theme-primary;
@@ -479,6 +483,10 @@ video#af-vid {
     color: @theme-primary;
 }
 
+.text-dark {
+    color: @theme-dark;  
+}
+
 .no-gutter > [class*='col-'] {
     padding-right:0;
     padding-left:0;
@@ -491,6 +499,10 @@ video#af-vid {
 
 .btn-primary {
     .button-variant(white;@theme-primary;@theme-primary);
+}
+
+.btn-dark {
+    .button-variant(white;@theme-dark;@theme-dark);
 }
 
 .btn {
