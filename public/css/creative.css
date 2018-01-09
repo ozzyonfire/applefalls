@@ -39,7 +39,7 @@ a:focus {
   color: #860400;
 }
 a.alt {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 0, 0, 0.85);
 }
 a.alt:hover,
 a.alt:focus {
